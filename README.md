@@ -1,4 +1,4 @@
-# crosspay
+# CrossPay
 
 CrossPay mobile app
 
