@@ -18,7 +18,7 @@ class Themes {
         titleMedium: TextStyle(
             color: kBlackColor, fontSize: 22, fontWeight: FontWeight.w600),
         titleLarge: TextStyle(
-            color: kBlackColor, fontSize: 24, fontWeight: FontWeight.w600),
+            color: kBlackColor, fontSize: 24, fontWeight: FontWeight.bold),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
         modalBackgroundColor: kWhiteColor,
@@ -54,7 +54,7 @@ class Themes {
         titleMedium: TextStyle(
             color: kBlackColor, fontSize: 22, fontWeight: FontWeight.w600),
         titleLarge: TextStyle(
-            color: kBlackColor, fontSize: 24, fontWeight: FontWeight.w600),
+            color: kBlackColor, fontSize: 24, fontWeight: FontWeight.bold),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
         modalBackgroundColor: kWhiteColor,
