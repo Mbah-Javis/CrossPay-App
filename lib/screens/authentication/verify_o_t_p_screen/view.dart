@@ -10,6 +10,7 @@ import 'package:crosspay/theme/colors.dart';
 import 'package:crosspay/widgets/input_fields/c_pin_input_field.dart';
 import 'package:crosspay/widgets/c_p_onboarding_heading.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
+import 'package:crosspay/generated/assets.dart';
 
 import 'logic.dart';
 
@@ -26,7 +27,7 @@ class VerifyOTPScreenPage extends StatelessWidget {
     return AnnotatedSystemUI(
         child: Scaffold(
       body: CPBackground(
-        assetName: 'assets/images/african_bg_3.png',
+        assetName: Assets.imagesAfricanBg3,
         child: Padding(
           padding: CPSpacer().screenPadding().copyWith(top: 50, bottom: 20),
           child: Column(

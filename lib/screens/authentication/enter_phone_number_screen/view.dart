@@ -8,6 +8,7 @@ import 'package:crosspay/widgets/buttons/cross_pay_button.dart';
 import 'package:crosspay/widgets/c_p_onboarding_heading.dart';
 import 'package:crosspay/widgets/input_fields/c_p_phone_input_field.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
+import 'package:crosspay/generated/assets.dart';
 
 import 'logic.dart';
 import 'state.dart';
@@ -27,8 +28,7 @@ class EnterPhoneNumberScreenPage extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/african_bg_2.png'))),
+                fit: BoxFit.cover, image: AssetImage(Assets.imagesAfricanBg2))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -4,6 +4,7 @@ import 'package:crosspay/theme/annotated_system_ui.dart';
 import 'package:crosspay/theme/colors.dart';
 import 'package:crosspay/widgets/buttons/cross_pay_button.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
+import 'package:crosspay/generated/assets.dart';
 
 import 'logic.dart';
 import 'state.dart';
@@ -25,7 +26,7 @@ class WelcomeScreenPage extends StatelessWidget {
             image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage(
-                  'assets/images/african_bg.png',
+                  Assets.imagesAfricanBg,
                 ))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
