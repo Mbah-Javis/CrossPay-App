@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:crosspay/screens/authentication/signup_screen/view.dart';
+import 'package:crosspay/utils/cross_pay_navigator.dart';
 
 import 'state.dart';
 
@@ -7,9 +9,6 @@ class VerifyOTPScreenLogic extends GetxController {
 
   void onContinueClick() {
     verifyOTPCode(state.otpController.value.text.trim());
-    /*CrossPayNavigator().goTo(
-        SignupScreenPage(),
-        Transition.rightToLeftWithFade);*/
   }
 
   void onOTPComplete(String code) {
@@ -19,5 +18,7 @@ class VerifyOTPScreenLogic extends GetxController {
   void verifyOTPCode(String code) async {
     // state.continueLoading.value = true;
     print(code);
+    CrossPayNavigator()
+        .goTo(SignupScreenPage(), Transition.rightToLeftWithFade);
   }
 }

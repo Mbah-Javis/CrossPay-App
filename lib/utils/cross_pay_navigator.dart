@@ -13,11 +13,12 @@ class CrossPayNavigator {
 
   // Navigate with no option to go back
   void goOff(Widget page, Transition transition) {
-    Get.off(() => page, transition: transition);
+    Get.off(() => page,
+        transition: transition, preventDuplicates: false, popGesture: true);
   }
 
   // Navigate and cancel all previous routes
   void goOffAll(Widget page, Transition transition) {
-    Get.offAll(() => page, transition: transition);
+    Get.offAll(() => page, transition: transition, popGesture: true);
   }
 }
