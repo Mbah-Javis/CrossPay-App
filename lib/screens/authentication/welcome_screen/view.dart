@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:crosspay/theme/annotated_system_ui.dart';
 import 'package:crosspay/theme/colors.dart';
 import 'package:crosspay/widgets/buttons/cross_pay_button.dart';
+import 'package:crosspay/utils/c_p_spacer.dart';
 
 import 'logic.dart';
 import 'state.dart';
@@ -35,17 +36,14 @@ class WelcomeScreenPage extends StatelessWidget {
                   color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius:
                       BorderRadius.vertical(top: Radius.circular(40))),
-              padding:
-                  EdgeInsets.only(left: 18, right: 18, bottom: 60, top: 25),
+              padding: CPSpacer().screenPadding().copyWith(bottom: 40, top: 25),
               child: Column(
                 children: [
                   Row(
                     children: [
                       Text('Welcome to',
                           style: Theme.of(context).textTheme.titleSmall),
-                      SizedBox(
-                        width: 8,
-                      ),
+                      CPSpacer().width(8),
                       Text('CrossPay',
                           style: Theme.of(context)
                               .textTheme
@@ -53,19 +51,16 @@ class WelcomeScreenPage extends StatelessWidget {
                               .copyWith(fontSize: 45, color: kPrimaryColor)),
                     ],
                   ),
-                  SizedBox(
-                    height: 8,
-                  ),
+                  CPSpacer().height(8),
                   Text('Worry less and send money to any mobile money account!',
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
                           .copyWith(color: kNeutralColor50)),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  CPSpacer().height(20),
                   CrossPayButton(
                       title: 'Get Started',
+                      loading: false,
                       onClick: () {
                         logic.onGetStartedClick();
                       }),

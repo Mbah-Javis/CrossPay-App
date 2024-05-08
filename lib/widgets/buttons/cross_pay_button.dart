@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:crosspay/theme/colors.dart';
+import 'package:crosspay/widgets/c_p_loading_widget.dart';
 
 class CrossPayButton extends StatelessWidget {
   const CrossPayButton(
@@ -10,7 +11,8 @@ class CrossPayButton extends StatelessWidget {
       this.borderColor,
       this.width,
       this.height,
-      this.titleColor})
+      this.titleColor,
+      required this.loading})
       : super(key: key);
 
   final String title;
@@ -20,26 +22,29 @@ class CrossPayButton extends StatelessWidget {
   final double? width;
   final double? height;
   final Color? titleColor;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: borderColor ?? kPrimaryColor),
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          padding: const EdgeInsets.all(0.0),
-          elevation: 0,
-          fixedSize:
-              Size(width ?? MediaQuery.of(context).size.width, height ?? 52),
-          backgroundColor: color ?? kPrimaryColor),
-      onPressed: onClick,
-      child: Text(title,
-          style: Theme.of(context)
-              .textTheme
-              .bodySmall!
-              .copyWith(color: titleColor ?? kWhiteColor)),
-    );
+    return loading
+        ? CPLoadingWidget()
+        : ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: borderColor ?? kPrimaryColor),
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                padding: const EdgeInsets.all(0.0),
+                elevation: 0,
+                fixedSize: Size(
+                    width ?? MediaQuery.of(context).size.width, height ?? 52),
+                backgroundColor: color ?? kPrimaryColor),
+            onPressed: onClick,
+            child: Text(title,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: titleColor ?? kWhiteColor)),
+          );
   }
 }

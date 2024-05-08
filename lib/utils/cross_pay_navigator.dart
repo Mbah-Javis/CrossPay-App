@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class CrossPayNavigator {
   void goTo(Widget page, Transition transition) {
-    Get.to(() => page, transition: transition);
+    Get.to(() => page,
+        transition: transition, preventDuplicates: false, popGesture: true);
   }
 
   void goBack() {
