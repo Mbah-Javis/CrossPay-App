@@ -51,11 +51,14 @@ PODS:
   - GTMSessionFetcher/Core (3.4.1)
   - PromisesObjC (2.4.0)
   - RecaptchaInterop (100.0.0)
+  - smart_auth (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - smart_auth (from `.symlinks/plugins/smart_auth/ios`)
 
 SPEC REPOS:
   trunk:
@@ -76,6 +79,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  smart_auth:
+    :path: ".symlinks/plugins/smart_auth/ios"
 
 SPEC CHECKSUMS:
   Firebase: 91fefd38712feb9186ea8996af6cbdef41473442
@@ -90,6 +95,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 

@@ -84,7 +84,7 @@ class SignupScreenPage extends StatelessWidget {
             title: 'Continue',
             loading: state.continueLoading.value,
             onClick: () {
-              // logic.onContinueClick();
+              logic.onContinueClick();
             }),
       );
     });

@@ -49,7 +49,10 @@ class WelcomeScreenPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge!
-                              .copyWith(fontSize: 45, color: kPrimaryColor)),
+                              .copyWith(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.11,
+                                  color: kPrimaryColor)),
                     ],
                   ),
                   CPSpacer().height(8),

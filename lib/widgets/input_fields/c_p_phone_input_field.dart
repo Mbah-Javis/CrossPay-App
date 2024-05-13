@@ -64,6 +64,6 @@ class CPPhoneInputField extends StatelessWidget {
   }
 
   TextStyle _defaultTextStyle(BuildContext context, Color color) {
-    return Theme.of(context).textTheme.bodySmall!.copyWith(color: color);
+    return Theme.of(context).textTheme.bodyMedium!.copyWith(color: color);
   }
 }
