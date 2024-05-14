@@ -5,6 +5,9 @@ import 'package:crosspay/theme/themes.dart';
 import 'package:crosspay/screens/authentication/welcome_screen/view.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:crosspay/api/local/hive_crosspay_user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +15,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await dotenv.load(fileName: '.env');
+  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDir.path);
+  Hive.registerAdapter(HiveCrossPayUserAdapter());
   runApp(const MyApp());
 }
 

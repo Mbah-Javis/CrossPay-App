@@ -19,12 +19,14 @@ class VerifyOTPScreenPage extends StatelessWidget {
       {Key? key,
       required this.phoneNumber,
       required this.countryCode,
+      required this.country,
       required this.verificationId,
       required this.resendOtpToken})
       : super(key: key);
 
   final String phoneNumber;
   final String countryCode;
+  final String country;
   final String verificationId;
   final int? resendOtpToken;
 
@@ -35,6 +37,7 @@ class VerifyOTPScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Set token to resend otp code
     logic.setResendOtpToken(verificationId, resendOtpToken);
+    logic.setUserInfo(phoneNumber, countryCode, country);
 
     return AnnotatedSystemUI(
         child: Scaffold(

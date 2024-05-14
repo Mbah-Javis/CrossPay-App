@@ -62,6 +62,7 @@ class EnterPhoneNumberScreenLogic extends GetxController {
         VerifyOTPScreenPage(
           phoneNumber: phoneNumber,
           countryCode: countryCode,
+          country: state.country.value,
           verificationId: verificationId,
           resendOtpToken: forceResendingToken,
         ),

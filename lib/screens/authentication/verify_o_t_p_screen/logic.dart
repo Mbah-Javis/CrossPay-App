@@ -17,6 +17,12 @@ class VerifyOTPScreenLogic extends GetxController {
     state.forceResendOtpToken.value = token!;
   }
 
+  void setUserInfo(String phoneNumber, String countryCode, String country) {
+    state.phoneNumber.value = int.parse(phoneNumber);
+    state.countryCode.value = int.parse(countryCode);
+    state.country.value = country;
+  }
+
   void onContinueClick() {
     verifyOTPCode(state.otpController.value.text.trim());
   }
@@ -64,6 +70,12 @@ class VerifyOTPScreenLogic extends GetxController {
 
   void gotoSignup() {
     stopLoading();
-    CrossPayNavigator().goTo(SignupScreenPage(), Transition.rightToLeft);
+    CrossPayNavigator().goTo(
+        SignupScreenPage(
+          phoneNumber: state.phoneNumber.value,
+          countryCode: state.countryCode.value,
+          country: state.country.value,
+        ),
+        Transition.rightToLeft);
   }
 }

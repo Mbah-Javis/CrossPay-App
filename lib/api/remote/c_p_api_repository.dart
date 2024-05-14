@@ -16,4 +16,9 @@ class CPApiRepository implements ApiRepository {
   Future<ApiResponse> getUser(String userId) {
     return _apiClient.getUser(userId);
   }
+
+  @override
+  Future<ApiResponse> createUser(dynamic requestData) {
+    return _apiClient.createUser(requestData);
+  }
 }
