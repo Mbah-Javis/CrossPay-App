@@ -8,4 +8,6 @@ class VerifyOTPScreenState {
   Rx<TextEditingController> otpController = TextEditingController().obs;
   Rx<FocusNode> focusNode = FocusNode().obs;
   RxBool showOTPError = false.obs;
+  RxString verificationId = ''.obs;
+  RxInt forceResendOtpToken = 0.obs;
 }

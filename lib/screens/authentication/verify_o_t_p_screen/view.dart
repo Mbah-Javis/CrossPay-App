@@ -15,15 +15,27 @@ import 'package:crosspay/generated/assets.dart';
 import 'logic.dart';
 
 class VerifyOTPScreenPage extends StatelessWidget {
-  VerifyOTPScreenPage({Key? key, required this.phoneNumber}) : super(key: key);
+  VerifyOTPScreenPage(
+      {Key? key,
+      required this.phoneNumber,
+      required this.countryCode,
+      required this.verificationId,
+      required this.resendOtpToken})
+      : super(key: key);
 
   final String phoneNumber;
+  final String countryCode;
+  final String verificationId;
+  final int? resendOtpToken;
 
   final logic = Get.put(VerifyOTPScreenLogic());
   final state = Get.find<VerifyOTPScreenLogic>().state;
 
   @override
   Widget build(BuildContext context) {
+    // Set token to resend otp code
+    logic.setResendOtpToken(verificationId, resendOtpToken);
+
     return AnnotatedSystemUI(
         child: Scaffold(
       body: CPBackground(
@@ -61,7 +73,7 @@ class VerifyOTPScreenPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Enter the OTP sent to ${phoneNumber}',
+          'Enter the OTP sent to $countryCode $phoneNumber',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         CPSpacer().heightMedium(),
@@ -71,7 +83,29 @@ class VerifyOTPScreenPage extends StatelessWidget {
             showError: state.showOTPError.value,
             onComplete: (pin) {
               logic.onOTPComplete(pin);
-            })
+            }),
+        CPSpacer().heightMedium(),
+        _didNotReceiveCode(context)
+      ],
+    );
+  }
+
+  Widget _didNotReceiveCode(BuildContext context) {
+    return Row(
+      children: [
+        Text('Did not receive code?'),
+        CPSpacer().width(10),
+        InkWell(
+          onTap: () {
+            String phoneCode = countryCode.replaceAll('+', '');
+            logic.resendOTP('$countryCode$phoneNumber');
+          },
+          child: Text('Resend',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall!
+                  .copyWith(color: kPrimaryColor)),
+        )
       ],
     );
   }
