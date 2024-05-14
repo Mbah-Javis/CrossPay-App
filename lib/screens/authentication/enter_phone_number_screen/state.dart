@@ -9,7 +9,7 @@ class EnterPhoneNumberScreenState {
   List<Country> cList = [countries[37]];
 
   Rx<TextEditingController> phoneNumberController = TextEditingController().obs;
-  RxString phoneCode = '+237'.obs;
-  RxString countryCode = 'CM'.obs;
+  RxString countryCode = '+237'.obs;
+  RxString country = 'CM'.obs;
   RxBool continueLoading = false.obs;
 }

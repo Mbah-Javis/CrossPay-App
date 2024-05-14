@@ -13,7 +13,16 @@ import 'package:crosspay/widgets/input_fields/c_p_input_text_field.dart';
 import 'logic.dart';
 
 class SignupScreenPage extends StatelessWidget {
-  SignupScreenPage({Key? key}) : super(key: key);
+  SignupScreenPage(
+      {Key? key,
+      required this.phoneNumber,
+      required this.countryCode,
+      required this.country})
+      : super(key: key);
+
+  final int phoneNumber;
+  final int countryCode;
+  final String country;
 
   final logic = Get.put(SignupScreenLogic());
   final state = Get.find<SignupScreenLogic>().state;
@@ -24,16 +33,20 @@ class SignupScreenPage extends StatelessWidget {
         child: Scaffold(
       body: CPBackground(
         assetName: Assets.imagesAfricanBg2,
-        child: Container(
-          padding: CPSpacer().screenPadding().copyWith(top: 50),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _heading(),
-              CPSpacer().height(40),
-              _enterAccountDetails(context)
-            ],
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Container(
+            padding: CPSpacer().screenPadding().copyWith(top: 50),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _heading(),
+                CPSpacer().height(40),
+                _enterAccountDetails(context),
+                CPSpacer().height(100),
+              ],
+            ),
           ),
         ),
       ),
@@ -48,32 +61,71 @@ class SignupScreenPage extends StatelessWidget {
 
   Widget _enterAccountDetails(BuildContext context) {
     return CPRoundedContainer(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'First name',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        CPSpacer().heightSmall(),
-        CPInputTextField(
-          hint: 'Your first name',
-          controller: state.firstNameController.value,
-          onFieldSubmitted: (value) {},
-        ),
-        CPSpacer().heightMedium(),
-        Text(
-          'Last name',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        CPSpacer().heightSmall(),
-        CPInputTextField(
-          hint: 'Your last name',
-          controller: state.lastNameController.value,
-          onFieldSubmitted: (value) {},
-        ),
-      ],
-    ));
+        child: Form(
+            key: state.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'First name',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                CPSpacer().heightSmall(),
+                CPInputTextField(
+                  hint: 'Your first name',
+                  controller: state.firstNameController.value,
+                  textInputAction: TextInputAction.next,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your first name';
+                    }
+                    return null;
+                  },
+                  onFieldSubmitted: (value) {},
+                ),
+                CPSpacer().heightMedium(),
+                Text(
+                  'Last name',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                CPSpacer().heightSmall(),
+                CPInputTextField(
+                  hint: 'Your last name',
+                  controller: state.lastNameController.value,
+                  textInputAction: TextInputAction.next,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your last name';
+                    }
+                    return null;
+                  },
+                  onFieldSubmitted: (value) {
+                    logic.onContinueClick(phoneNumber, countryCode, country);
+                  },
+                ),
+                CPSpacer().heightMedium(),
+                Text(
+                  'Email',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                CPSpacer().heightSmall(),
+                CPInputTextField(
+                  hint: 'Your email',
+                  controller: state.emailController.value,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    return null;
+                  },
+                  onFieldSubmitted: (value) {
+                    logic.onContinueClick(phoneNumber, countryCode, country);
+                  },
+                ),
+              ],
+            )));
   }
 
   Widget _continueButton() {
@@ -84,7 +136,7 @@ class SignupScreenPage extends StatelessWidget {
             title: 'Continue',
             loading: state.continueLoading.value,
             onClick: () {
-              logic.onContinueClick();
+              logic.onContinueClick(phoneNumber, countryCode, country);
             }),
       );
     });

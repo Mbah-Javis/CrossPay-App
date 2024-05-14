@@ -72,8 +72,8 @@ class EnterPhoneNumberScreenPage extends StatelessWidget {
             countryList: state.cList,
             phoneController: state.phoneNumberController.value,
             onChanged: (phone) {
-              logic.updateCountryCode(phone.countryISOCode);
-              logic.updatePhoneCode(phone.countryCode);
+              logic.updateCountry(phone.countryISOCode);
+              logic.updateCountryCode(phone.countryCode);
             },
             onCountryChanged: (country) {}),
       ],

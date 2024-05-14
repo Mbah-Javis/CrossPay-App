@@ -21,12 +21,19 @@ dependencies:
   dot_navigation_bar: ^1.0.2
   draggable_home: ^1.0.5
   http: ^1.2.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.3
+  package_info_plus: ^8.0.0
+  onesignal_flutter: ^5.1.6
+  device_info_plus: ^10.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^3.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.9
 
 flutter:
 
@@ -46,3 +53,7 @@ flutter:
         - asset: fonts/Poppins-SemiBold.ttf
           weight: 400
 
+build_runner:
+  generate:
+    options:
+      - lib/models/hive_cross_pay_user.dart

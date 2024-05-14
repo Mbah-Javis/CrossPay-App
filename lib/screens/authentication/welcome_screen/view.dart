@@ -56,7 +56,7 @@ class WelcomeScreenPage extends StatelessWidget {
                     ],
                   ),
                   CPSpacer().height(8),
-                  Text('Worry less and send money to any mobile money account!',
+                  Text('Worry less, send money to any mobile money account!',
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!

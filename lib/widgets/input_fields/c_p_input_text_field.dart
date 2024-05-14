@@ -17,6 +17,7 @@ class CPInputTextField extends StatelessWidget {
       this.maxLength,
       this.keyboardType,
       this.textInputAction,
+      this.validator,
       required this.onFieldSubmitted,
       this.expands})
       : super(key: key);
@@ -35,7 +36,8 @@ class CPInputTextField extends StatelessWidget {
   final Color? cursorColor;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
-  final Function(String value) onFieldSubmitted;
+  final String? Function(String?)? validator;
+  final Function(String) onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class CPInputTextField extends StatelessWidget {
         scrollPhysics: const BouncingScrollPhysics(),
         autofocus: autoFocus ?? false,
         cursorColor: cursorColor ?? kPrimaryColor,
+        validator: validator,
         onFieldSubmitted: (value) {
           onFieldSubmitted(value);
         },
