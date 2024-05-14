@@ -5,6 +5,7 @@ import 'package:crosspay/utils/cross_pay_navigator.dart';
 import 'package:crosspay/api/remote/firebase_auth_service.dart';
 import 'package:crosspay/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:crosspay/models/crosspay_user.dart';
 
 import 'state.dart';
 
@@ -60,7 +61,18 @@ class VerifyOTPScreenLogic extends GetxController {
   Future<bool> checkExistingUser(String userId) async {
     var userController = Get.put(UserController());
     var response = await userController.getUser(userId);
-    return response.statusCode == 404 ? true : false;
+    bool noUser = response.statusCode == 404 ? true : false;
+    if (noUser) {
+      gotoSignup();
+    } else {
+      if (response.statusCode == 200) {
+        CrossPayUser user =
+            CrossPayUser.fromJson(response.data['data']['user']);
+        userController.saveLocalUser(user);
+      }
+      gotoHome();
+    }
+    return noUser;
   }
 
   void gotoHome() {

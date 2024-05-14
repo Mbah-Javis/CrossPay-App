@@ -6,6 +6,7 @@ import 'package:crosspay/generated/assets.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:crosspay/theme/colors.dart';
 import 'package:draggable_home/draggable_home.dart';
+import 'package:crosspay/controllers/user_controller.dart';
 
 import 'logic.dart';
 
@@ -14,6 +15,8 @@ class HomeScreenPage extends StatelessWidget {
 
   final logic = Get.put(HomeScreenLogic());
   final state = Get.find<HomeScreenLogic>().state;
+
+  var userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {

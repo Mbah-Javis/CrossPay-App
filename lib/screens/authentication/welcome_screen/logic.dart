@@ -9,6 +9,6 @@ class WelcomeScreenLogic extends GetxController {
 
   void onGetStartedClick() {
     CrossPayNavigator()
-        .goTo(EnterPhoneNumberScreenPage(), Transition.rightToLeft);
+        .goOff(EnterPhoneNumberScreenPage(), Transition.rightToLeft);
   }
 }

@@ -73,12 +73,7 @@ class FirebaseAuthService {
   }
 
   void checkExistingUser(String userId) async {
-    bool noUser = await verifyOTPController.checkExistingUser(userId);
     enterNumberController.stopLoading();
-    if (noUser) {
-      verifyOTPController.gotoSignup();
-    } else {
-      verifyOTPController.gotoHome();
-    }
+    await verifyOTPController.checkExistingUser(userId);
   }
 }

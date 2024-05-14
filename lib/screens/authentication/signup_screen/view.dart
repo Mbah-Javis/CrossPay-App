@@ -33,16 +33,20 @@ class SignupScreenPage extends StatelessWidget {
         child: Scaffold(
       body: CPBackground(
         assetName: Assets.imagesAfricanBg2,
-        child: Container(
-          padding: CPSpacer().screenPadding().copyWith(top: 50),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _heading(),
-              CPSpacer().height(40),
-              _enterAccountDetails(context)
-            ],
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Container(
+            padding: CPSpacer().screenPadding().copyWith(top: 50),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _heading(),
+                CPSpacer().height(40),
+                _enterAccountDetails(context),
+                CPSpacer().height(100),
+              ],
+            ),
           ),
         ),
       ),
