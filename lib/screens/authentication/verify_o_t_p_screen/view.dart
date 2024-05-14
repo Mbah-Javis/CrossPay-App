@@ -95,17 +95,21 @@ class VerifyOTPScreenPage extends StatelessWidget {
       children: [
         Text('Did not receive code?'),
         CPSpacer().width(10),
-        InkWell(
-          onTap: () {
-            String phoneCode = countryCode.replaceAll('+', '');
-            logic.resendOTP('$countryCode$phoneNumber');
-          },
-          child: Text('Resend',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .copyWith(color: kPrimaryColor)),
-        )
+        Obx(() {
+          return state.continueLoading.value
+              ? Container()
+              : InkWell(
+                  onTap: () {
+                    String phoneCode = countryCode.replaceAll('+', '');
+                    logic.resendOTP('$countryCode$phoneNumber');
+                  },
+                  child: Text('Resend',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall!
+                          .copyWith(color: kPrimaryColor)),
+                );
+        })
       ],
     );
   }
