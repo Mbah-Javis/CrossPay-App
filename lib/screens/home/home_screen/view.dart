@@ -118,7 +118,7 @@ class HomeScreenPage extends StatelessWidget {
                       '${user?.firstName} ${user?.lastName}',
                       style: Theme.of(context)
                           .textTheme
-                          .titleLarge!
+                          .titleSmall!
                           .copyWith(color: kWhiteColor),
                     )
                   ],
