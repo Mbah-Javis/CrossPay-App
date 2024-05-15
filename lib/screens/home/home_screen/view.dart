@@ -7,6 +7,7 @@ import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:crosspay/theme/colors.dart';
 import 'package:draggable_home/draggable_home.dart';
 import 'package:crosspay/controllers/user_controller.dart';
+import 'package:crosspay/generated/assets.dart';
 
 import 'logic.dart';
 
@@ -22,14 +23,33 @@ class HomeScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedSystemUI(
         child: DraggableHome(
-      leading: const Icon(Icons.person_2_rounded),
+      leading: Container(
+          margin: EdgeInsets.only(left: 10, bottom: 5, top: 3),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(18),
+            child: Image.asset(
+              Assets.imagesAfricanFaceMasks,
+              fit: BoxFit.cover,
+            ),
+          )),
       title: const Text(
         "CrossPay",
         style: TextStyle(color: kWhiteColor),
       ),
       actions: [
-        IconButton(
-            onPressed: () {}, icon: const Icon(Icons.notifications_rounded)),
+        Container(
+            padding: EdgeInsets.all(11),
+            margin: EdgeInsets.only(right: 15),
+            decoration: BoxDecoration(
+                color: kLightOrangeColor,
+                borderRadius: BorderRadius.circular(18)),
+            child: InkWell(
+              onTap: () {},
+              child: const Icon(
+                Icons.notifications_rounded,
+                color: kPrimaryColor,
+              ),
+            )),
       ],
       headerWidget: _homeHeading(context),
       alwaysShowLeadingAndAction: true,
@@ -85,21 +105,26 @@ class HomeScreenPage extends StatelessWidget {
       child: CPBackground(
         assetName: Assets.imagesAfricanBg4,
         fit: BoxFit.cover,
-        child: Container(
-          color: kPrimaryColor.withOpacity(0.7),
-          padding: EdgeInsets.only(top: 40),
-          child: Column(
-            children: [
-              Text(
-                'Javis',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: kWhiteColor),
-              )
-            ],
-          ),
-        ),
+        child: FutureBuilder(
+            future: userController.getLocalUser(),
+            builder: (context, snapshot) {
+              var user = snapshot.data;
+              return Container(
+                color: kPrimaryColor.withOpacity(0.7),
+                padding: EdgeInsets.only(top: 45),
+                child: Column(
+                  children: [
+                    Text(
+                      '${user?.firstName} ${user?.lastName}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(color: kWhiteColor),
+                    )
+                  ],
+                ),
+              );
+            }),
       ),
     );
   }

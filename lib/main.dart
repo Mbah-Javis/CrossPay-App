@@ -13,6 +13,7 @@ import 'package:crosspay/utils/c_p_constants.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:crosspay/controllers/user_controller.dart';
 import 'package:crosspay/screens/splash_screen.dart';
+import 'package:crosspay/utils/cross_pay_navigator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,7 @@ void main() async {
   String oneSignalAppId = CPConstants().ONESIGNAL_APP_ID!;
   OneSignal.initialize(oneSignalAppId);
   OneSignal.Notifications.requestPermission(true);
+  OneSignal.User.pushSubscription.addObserver((stateChanges) {});
 
   runApp(const MyApp());
 }
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
       home: MaterialApp(
         title: 'CrossPay',
         debugShowCheckedModeBanner: false,
+        navigatorKey: CrossPayNavigator.navigatorKey,
         theme: Themes.light,
         darkTheme: Themes.dark,
         themeMode: ThemeMode.light,

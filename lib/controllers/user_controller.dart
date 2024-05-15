@@ -18,8 +18,8 @@ class UserController extends GetxController {
     return response;
   }
 
-  User getCurrentUser() {
-    return auth.currentUser!;
+  User? getCurrentUser() {
+    return auth.currentUser;
   }
 
   Future<ApiResponse> createUser(dynamic requestData) async {
@@ -54,10 +54,10 @@ class UserController extends GetxController {
 
     if (user != null && userData != null) {
       CrossPayNavigator()
-          .goOff(HomeScreenPage(), Transition.rightToLeftWithFade);
+          .goOffAll(HomeScreenPage(), Transition.rightToLeftWithFade);
     } else {
       CrossPayNavigator()
-          .goOff(WelcomeScreenPage(), Transition.rightToLeftWithFade);
+          .goOffAll(WelcomeScreenPage(), Transition.rightToLeftWithFade);
     }
   }
 }

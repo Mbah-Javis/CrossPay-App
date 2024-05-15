@@ -39,19 +39,21 @@ class WelcomeScreenPage extends StatelessWidget {
                       BorderRadius.vertical(top: Radius.circular(40))),
               padding: CPSpacer().screenPadding().copyWith(bottom: 40, top: 25),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       Text('Welcome to',
-                          style: Theme.of(context).textTheme.titleSmall),
+                          style: Theme.of(context).textTheme.titleLarge),
                       CPSpacer().width(8),
                       Text('CrossPay',
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge!
                               .copyWith(
+                                  fontWeight: FontWeight.w700,
                                   fontSize:
-                                      MediaQuery.of(context).size.width * 0.11,
+                                      MediaQuery.of(context).size.width * 0.12,
                                   color: kPrimaryColor)),
                     ],
                   ),

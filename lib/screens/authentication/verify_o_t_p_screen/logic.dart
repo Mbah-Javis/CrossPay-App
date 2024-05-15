@@ -6,6 +6,7 @@ import 'package:crosspay/api/remote/firebase_auth_service.dart';
 import 'package:crosspay/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:crosspay/models/crosspay_user.dart';
+import 'package:crosspay/utils/c_p_alerts.dart';
 
 import 'state.dart';
 
@@ -52,10 +53,7 @@ class VerifyOTPScreenLogic extends GetxController {
   }
 
   void showSuccessMessage(String message) {
-    Get.snackbar('Verification', message,
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.green,
-        colorText: Colors.white);
+    CPAlerts().showSuccess('Verification', message);
   }
 
   Future<bool> checkExistingUser(String userId) async {

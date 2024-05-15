@@ -5,6 +5,7 @@ import 'package:crosspay/utils/cross_pay_navigator.dart';
 import 'package:crosspay/api/remote/c_p_api_repository.dart';
 import 'package:crosspay/api/remote/firebase_auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:crosspay/utils/c_p_alerts.dart';
 
 import 'state.dart';
 
@@ -12,10 +13,16 @@ class EnterPhoneNumberScreenLogic extends GetxController {
   final EnterPhoneNumberScreenState state = EnterPhoneNumberScreenState();
 
   void onContinueClick() {
-    updateLoadingState(true);
-    String phoneNumber =
-        '${state.countryCode.value} ${state.phoneNumberController.value.text}';
-    FirebaseAuthService().getVerificationCode(phoneNumber, null, false);
+    String phoneNumber = '${state.phoneNumberController.value.text}';
+    String countryCode = '${state.countryCode.value}';
+    if (phoneNumber.isNotEmpty) {
+      updateLoadingState(true);
+      FirebaseAuthService()
+          .getVerificationCode('$countryCode$phoneNumber', null, false);
+    } else {
+      CPAlerts()
+          .showError('Validation Error', 'Please enter a valid phone number');
+    }
   }
 
   void updateLoadingState(bool loading) {
@@ -35,7 +42,7 @@ class EnterPhoneNumberScreenLogic extends GetxController {
   }
 
   void verificationCodeSent(String verificationId, int? forceResendingToken) {
-    updateLoadingState(false);
+    stopLoading();
     gotoVerifyOTP(verificationId, forceResendingToken);
   }
 
@@ -48,16 +55,14 @@ class EnterPhoneNumberScreenLogic extends GetxController {
   }
 
   void showErrorMessage(String message) {
-    updateLoadingState(false);
-    Get.snackbar('Verification Error', message,
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.deepOrange,
-        colorText: Colors.white);
+    stopLoading();
+    CPAlerts().showError('Verification Error', message);
   }
 
   void gotoVerifyOTP(String verificationId, int? forceResendingToken) {
-    String phoneNumber = '${state.phoneNumberController.value.text}';
-    String countryCode = '${state.countryCode.value}';
+    String phoneNumber = '${state.phoneNumberController.value.text.trim()}';
+    String countryCode = '${state.countryCode.value.trim()}';
+    print(phoneNumber);
     CrossPayNavigator().goTo(
         VerifyOTPScreenPage(
           phoneNumber: phoneNumber,

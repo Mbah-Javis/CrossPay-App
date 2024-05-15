@@ -2,6 +2,9 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class CrossPayNavigator {
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
+
   void goTo(Widget page, Transition transition) {
     Get.to(() => page,
         transition: transition, preventDuplicates: false, popGesture: true);
@@ -19,6 +22,9 @@ class CrossPayNavigator {
 
   // Navigate and cancel all previous routes
   void goOffAll(Widget page, Transition transition) {
-    Get.offAll(() => page, transition: transition, popGesture: true);
+    navigatorKey.currentState?.pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => page),
+      (route) => false,
+    );
   }
 }
