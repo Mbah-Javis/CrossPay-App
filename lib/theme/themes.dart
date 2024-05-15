@@ -37,6 +37,10 @@ class Themes {
           ),
           contentTextStyle: TextStyle(color: kBlackColor)),
       listTileTheme: const ListTileThemeData(textColor: kBlackColor),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: kLightWhiteColor,
+          selectedItemColor: Colors.deepOrangeAccent,
+          unselectedItemColor: kPrimaryColor),
       buttonTheme: ButtonThemeData());
 
   static final dark = ThemeData(
@@ -72,5 +76,10 @@ class Themes {
             fontWeight: FontWeight.w600,
           ),
           contentTextStyle: TextStyle(color: kBlackColor)),
-      listTileTheme: const ListTileThemeData(textColor: kBlackColor));
+      listTileTheme: const ListTileThemeData(textColor: kBlackColor),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: kLightWhiteColor,
+          selectedItemColor: Colors.deepOrangeAccent,
+          unselectedItemColor: kPrimaryColor),
+      buttonTheme: ButtonThemeData());
 }

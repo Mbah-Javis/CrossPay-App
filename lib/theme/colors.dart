@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Light theme colors
 const kPrimaryColor = Color(0xFF230802);
 const kWhiteColor = Color(0xFFFFFFFF);
+const kLightWhiteColor = Color(0xFFFCFCFC);
 const kLightOrangeColor = Color(0xFFFFEDE8);
 const kInputFieldColor = Color(0xFFEFF1F1);
 const kLightYellowColor = Color(0xFFFFF6C3);
