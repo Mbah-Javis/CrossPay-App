@@ -36,12 +36,8 @@ class HomeScreenPage extends StatelessWidget {
                       horizontal: MediaQuery.of(context).size.width * 0.18),
                   margin: EdgeInsets.zero,
                   paddingR: EdgeInsets.symmetric(vertical: 5, horizontal: 2),
-                  selectedItemColor: Theme.of(context)
-                      .bottomNavigationBarTheme
-                      .selectedItemColor,
-                  unselectedItemColor: Theme.of(context)
-                      .bottomNavigationBarTheme
-                      .unselectedItemColor,
+                  selectedItemColor: Colors.deepOrangeAccent,
+                  unselectedItemColor: kPrimaryColor,
                   splashBorderRadius: 30,
                   boxShadow: [
                     BoxShadow(
@@ -51,9 +47,7 @@ class HomeScreenPage extends StatelessWidget {
                         blurRadius: 8)
                   ],
                   currentIndex: state.selectedPage.value,
-                  backgroundColor: Theme.of(context)
-                      .bottomNavigationBarTheme
-                      .backgroundColor,
+                  backgroundColor: kLightWhiteColor,
                   onTap: (index) {
                     logic.selectPage(index);
                   },

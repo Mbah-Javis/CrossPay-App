@@ -75,7 +75,7 @@ class VerifyOTPScreenLogic extends GetxController {
 
   void gotoHome() {
     stopLoading();
-    CrossPayNavigator().goOffAll(HomeScreenPage(), Transition.rightToLeft);
+    CrossPayNavigator().goTo(HomeScreenPage(), Transition.rightToLeft);
   }
 
   void gotoSignup() {

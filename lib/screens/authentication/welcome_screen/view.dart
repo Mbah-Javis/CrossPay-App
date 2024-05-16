@@ -51,9 +51,9 @@ class WelcomeScreenPage extends StatelessWidget {
                               .textTheme
                               .titleLarge!
                               .copyWith(
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.bold,
                                   fontSize:
-                                      MediaQuery.of(context).size.width * 0.12,
+                                      MediaQuery.of(context).size.width * 0.13,
                                   color: kPrimaryColor)),
                     ],
                   ),
@@ -61,7 +61,7 @@ class WelcomeScreenPage extends StatelessWidget {
                   Text('Worry less, send money to any mobile money account!',
                       style: Theme.of(context)
                           .textTheme
-                          .bodySmall!
+                          .bodyMedium!
                           .copyWith(color: kNeutralColor50)),
                   CPSpacer().height(20),
                   CrossPayButton(

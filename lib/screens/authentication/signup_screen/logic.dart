@@ -62,7 +62,6 @@ class SignupScreenLogic extends GetxController {
   }
 
   void gotoHome() {
-    CrossPayNavigator()
-        .goOffAll(HomeScreenPage(), Transition.rightToLeftWithFade);
+    CrossPayNavigator().goTo(HomeScreenPage(), Transition.rightToLeftWithFade);
   }
 }
