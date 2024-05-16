@@ -44,7 +44,7 @@ class WelcomeScreenPage extends StatelessWidget {
                   Row(
                     children: [
                       Text('Welcome to',
-                          style: Theme.of(context).textTheme.titleLarge),
+                          style: Theme.of(context).textTheme.titleMedium),
                       CPSpacer().width(8),
                       Text('CrossPay',
                           style: Theme.of(context)
@@ -53,7 +53,7 @@ class WelcomeScreenPage extends StatelessWidget {
                               .copyWith(
                                   fontWeight: FontWeight.bold,
                                   fontSize:
-                                      MediaQuery.of(context).size.width * 0.13,
+                                      MediaQuery.of(context).size.width * 0.11,
                                   color: kPrimaryColor)),
                     ],
                   ),
@@ -61,7 +61,7 @@ class WelcomeScreenPage extends StatelessWidget {
                   Text('Worry less, send money to any mobile money account!',
                       style: Theme.of(context)
                           .textTheme
-                          .bodyMedium!
+                          .bodySmall!
                           .copyWith(color: kNeutralColor50)),
                   CPSpacer().height(20),
                   CrossPayButton(

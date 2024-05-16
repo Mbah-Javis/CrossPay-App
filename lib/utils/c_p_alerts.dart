@@ -48,7 +48,7 @@ class CPAlerts {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(title, style: Theme.of(context).textTheme.titleMedium),
+                Text(title, style: Theme.of(context).textTheme.titleSmall),
                 CPSpacer().heightMedium(),
                 content
               ],

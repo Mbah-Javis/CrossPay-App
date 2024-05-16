@@ -5,6 +5,7 @@ import 'package:crosspay/models/c_p_country_model.dart';
 import 'package:crosspay/utils/c_p_alerts.dart';
 import 'package:crosspay/models/c_p_transaction.dart';
 import 'package:crosspay/utils/cross_pay_navigator.dart';
+import 'package:crosspay/screens/send_money_screen/view.dart';
 import 'user_controller.dart';
 
 class MobileMoneyController extends GetxController {
@@ -26,7 +27,10 @@ class MobileMoneyController extends GetxController {
   }
 
   void gotoSendMoney(CPCountryModel country, PaymentOption option) {
-    print('Sending money');
+    CrossPayNavigator().goBack();
+    CrossPayNavigator().goTo(
+        SendMoneyScreenPage(country: country, option: option),
+        Transition.downToUp);
   }
 
   void gotoBuyAirtime(CPCountryModel country, PaymentOption option) {
@@ -45,9 +49,9 @@ class MobileMoneyController extends GetxController {
     Map<String, dynamic> requestData = {
       "amount": amount,
       "receive_amount": receiveAmount,
-      "currency": user.subAccount.defaultCurrency,
-      "country_code": user.countryCode,
-      "country": user.country,
+      "currency": user?.subAccount?.defaultCurrency,
+      "country_code": user?.countryCode,
+      "country": user?.country,
       "network": option.network,
       "operator": option.operator,
       "network_name": option.name,
@@ -63,8 +67,8 @@ class MobileMoneyController extends GetxController {
     return response;
   }
 
-  Stream<List<CPTransaction>> getUserTransactions() async {
-    var stream = await apiRepository.getUserTransactions();
+  Stream<List<CPTransaction>> getUserTransactions() {
+    var stream = apiRepository.getUserTransactions();
     return stream;
   }
 }

@@ -65,7 +65,7 @@ class EnterPhoneNumberScreenPage extends StatelessWidget {
       children: [
         Text(
           'Enter your phone number',
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         CPSpacer().heightMedium(),
         CPPhoneInputField(

@@ -77,7 +77,7 @@ class VerifyOTPScreenPage extends StatelessWidget {
       children: [
         Text(
           'Enter the OTP sent to $countryCode $phoneNumber',
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         CPSpacer().heightMedium(),
         CPPinInputField(

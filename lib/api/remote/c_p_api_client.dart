@@ -144,13 +144,13 @@ class CPApiClient {
   }
 
   Stream<List<CPTransaction>> getUserTransactions() {
-    Stream<QueryDocumentSnapshot<Map<String, dynamic>>> stream = db
+    Stream<QuerySnapshot<Map<String, dynamic>>> stream = db
         .collection('user_transactions')
         .doc(user?.uid)
         .collection('transactions')
         .snapshots();
 
-    return stream.map((value) => CPTransaction.fromList(value));
+    return stream.map((value) => CPTransaction.fromList(value.docs));
   }
 
   // TODO: Replace with api endpoint

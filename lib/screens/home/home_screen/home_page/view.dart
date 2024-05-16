@@ -84,7 +84,7 @@ class HomePagePage extends StatelessWidget {
                       '${user?.firstName} ${user?.lastName}',
                       style: Theme.of(context)
                           .textTheme
-                          .titleLarge!
+                          .titleSmall!
                           .copyWith(color: kWhiteColor),
                     ),
                     CPSpacer().height(40),
@@ -115,7 +115,7 @@ class HomePagePage extends StatelessWidget {
                             backgroundColor: kLightOrangeColor,
                             icon: Icon(
                               CupertinoIcons.arrow_up_right_circle,
-                              color: kPrimaryColor,
+                              color: Theme.of(context).primaryColor,
                             ),
                             onClick: () {
                               logic.onSendMoneyClicked(context);
@@ -124,7 +124,7 @@ class HomePagePage extends StatelessWidget {
                             title: 'Buy airtime',
                             backgroundColor: kLightOrangeColor,
                             icon: Icon(CupertinoIcons.arrow_2_circlepath_circle,
-                                color: kPrimaryColor),
+                                color: Theme.of(context).primaryColor),
                             onClick: () {
                               logic.onBuyAirtimeClicked(context);
                             })
@@ -149,16 +149,18 @@ class HomePagePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Recent Transactions',
+                  'Transactions',
                   style: Theme.of(context)
                       .textTheme
-                      .titleMedium!
-                      .copyWith(color: kPrimaryColor),
+                      .titleSmall!
+                      .copyWith(color: Theme.of(context).primaryColor),
                 ),
                 Text(
                   'See all',
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: kPrimaryColor, fontWeight: FontWeight.bold),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(color: Theme.of(context).primaryColor),
                 ),
               ],
             ),

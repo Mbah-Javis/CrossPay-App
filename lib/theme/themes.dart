@@ -10,15 +10,15 @@ class Themes {
       brightness: Brightness.dark,
       shadowColor: kShadowColor,
       textTheme: const TextTheme(
-        bodySmall: TextStyle(color: kBlackColor, fontSize: 14),
-        bodyMedium: TextStyle(color: kBlackColor, fontSize: 16),
-        bodyLarge: TextStyle(color: kBlackColor, fontSize: 18),
+        bodySmall: TextStyle(color: kBlackColor, fontSize: 11),
+        bodyMedium: TextStyle(color: kBlackColor, fontSize: 13),
+        bodyLarge: TextStyle(color: kBlackColor, fontSize: 15),
         titleSmall: TextStyle(
-            color: kBlackColor, fontSize: 20, fontWeight: FontWeight.w600),
+            color: kBlackColor, fontSize: 17, fontWeight: FontWeight.w600),
         titleMedium: TextStyle(
-            color: kBlackColor, fontSize: 22, fontWeight: FontWeight.w600),
+            color: kBlackColor, fontSize: 19, fontWeight: FontWeight.w600),
         titleLarge: TextStyle(
-            color: kBlackColor, fontSize: 24, fontWeight: FontWeight.bold),
+            color: kBlackColor, fontSize: 21, fontWeight: FontWeight.bold),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
         modalBackgroundColor: kWhiteColor,
@@ -32,7 +32,7 @@ class Themes {
           backgroundColor: kWhiteColor,
           titleTextStyle: TextStyle(
             color: kPrimaryColor,
-            fontSize: 14,
+            fontSize: 13,
             fontWeight: FontWeight.w600,
           ),
           contentTextStyle: TextStyle(color: kBlackColor)),
@@ -50,15 +50,15 @@ class Themes {
       brightness: Brightness.light,
       shadowColor: kShadowColor,
       textTheme: const TextTheme(
-        bodySmall: TextStyle(color: kBlackColor, fontSize: 14),
-        bodyMedium: TextStyle(color: kBlackColor, fontSize: 16),
-        bodyLarge: TextStyle(color: kBlackColor, fontSize: 18),
+        bodySmall: TextStyle(color: kBlackColor, fontSize: 11),
+        bodyMedium: TextStyle(color: kBlackColor, fontSize: 13),
+        bodyLarge: TextStyle(color: kBlackColor, fontSize: 15),
         titleSmall: TextStyle(
-            color: kBlackColor, fontSize: 20, fontWeight: FontWeight.w600),
+            color: kBlackColor, fontSize: 17, fontWeight: FontWeight.w600),
         titleMedium: TextStyle(
-            color: kBlackColor, fontSize: 22, fontWeight: FontWeight.w600),
+            color: kBlackColor, fontSize: 19, fontWeight: FontWeight.w600),
         titleLarge: TextStyle(
-            color: kBlackColor, fontSize: 24, fontWeight: FontWeight.bold),
+            color: kBlackColor, fontSize: 21, fontWeight: FontWeight.bold),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
         modalBackgroundColor: kWhiteColor,
@@ -72,7 +72,7 @@ class Themes {
           backgroundColor: kWhiteColor,
           titleTextStyle: TextStyle(
             color: kPrimaryColor,
-            fontSize: 14,
+            fontSize: 13,
             fontWeight: FontWeight.w600,
           ),
           contentTextStyle: TextStyle(color: kBlackColor)),

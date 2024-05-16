@@ -64,7 +64,10 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
                     CPSpacer().width(15),
                     Text(
                       getCountry(widget.country.country!),
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -72,12 +75,16 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
                   showOptions
                       ? CupertinoIcons.arrowtriangle_up_circle
                       : CupertinoIcons.arrowtriangle_down_circle,
-                  color: kNeutralColor50,
+                  color: Theme.of(context).primaryColor.withOpacity(0.3),
                 )
               ],
             ),
           ),
-          showOptions ? Divider() : Container(),
+          showOptions
+              ? Divider(
+                  color: Theme.of(context).primaryColor.withOpacity(0.3),
+                )
+              : Container(),
           showOptions ? _buildOptions() : Container()
         ],
       ),
@@ -130,7 +137,7 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
               widget.isSendingMoney
                   ? '${paymentOption.name}'
                   : '${paymentOption.network}',
-              style: Theme.of(context).textTheme.titleSmall,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),

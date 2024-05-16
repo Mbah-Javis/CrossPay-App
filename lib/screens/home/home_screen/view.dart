@@ -43,8 +43,8 @@ class HomeScreenPage extends StatelessWidget {
                     BoxShadow(
                         color: Theme.of(context).splashColor,
                         offset: Offset(0, 8),
-                        spreadRadius: 5,
-                        blurRadius: 8)
+                        spreadRadius: 8,
+                        blurRadius: 6)
                   ],
                   currentIndex: state.selectedPage.value,
                   backgroundColor: kLightWhiteColor,

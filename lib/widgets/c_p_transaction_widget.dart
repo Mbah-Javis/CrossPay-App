@@ -19,18 +19,24 @@ class CPTransactionWidget extends StatelessWidget {
         children: [
           Stack(
             children: [
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        'https://ik.imagekit.io/tp/20220131-mtn-momo-ghana-logo.png',
-                    fit: BoxFit.cover,
-                    height: 40,
-                    width: 40,
-                    placeholder: (context, value) {
-                      return CPLoadingWidget();
-                    },
-                  )),
+              Container(
+                decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: BorderRadius.circular(100),
+                    border: Border.all(color: kPrimaryColor, width: 2)),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          'https://ik.imagekit.io/tp/20220131-mtn-momo-ghana-logo.png',
+                      fit: BoxFit.cover,
+                      height: 40,
+                      width: 40,
+                      placeholder: (context, value) {
+                        return CPLoadingWidget();
+                      },
+                    )),
+              ),
               Positioned(
                   bottom: 0,
                   right: 0,
@@ -77,7 +83,7 @@ class CPTransactionWidget extends StatelessWidget {
                   ),
                   Text(
                     TextFormatter().formatCurrency('XAF', 20000),
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: kPrimaryColor, fontWeight: FontWeight.w500),
                   ),
                 ],
