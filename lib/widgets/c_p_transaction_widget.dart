@@ -23,8 +23,7 @@ class CPTransactionWidget extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                     color: kWhiteColor,
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(color: kPrimaryColor, width: 2)),
+                    borderRadius: BorderRadius.circular(100)),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: CPImage(

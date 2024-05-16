@@ -18,6 +18,9 @@ class CPInputTextField extends StatelessWidget {
       this.keyboardType,
       this.textInputAction,
       this.validator,
+      this.icon,
+      this.suffixIcon,
+      this.onChanged,
       required this.onFieldSubmitted,
       this.expands})
       : super(key: key);
@@ -37,6 +40,9 @@ class CPInputTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final String? Function(String?)? validator;
+  final Widget? icon;
+  final Widget? suffixIcon;
+  final Function(String)? onChanged;
   final Function(String) onFieldSubmitted;
 
   @override
@@ -51,6 +57,11 @@ class CPInputTextField extends StatelessWidget {
         autofocus: autoFocus ?? false,
         cursorColor: cursorColor ?? kPrimaryColor,
         validator: validator,
+        onChanged: (value) {
+          if (onChanged != null) {
+            onChanged!(value);
+          }
+        },
         onFieldSubmitted: (value) {
           onFieldSubmitted(value);
         },
@@ -63,10 +74,12 @@ class CPInputTextField extends StatelessWidget {
         textInputAction: textInputAction,
         style: textStyle ?? _defaultTextStyle(context, kNeutralColor),
         decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: hintStyle ?? _defaultTextStyle(context, kNeutralColor50),
-        ),
+            border: InputBorder.none,
+            hintText: hint,
+            hintStyle: hintStyle ?? _defaultTextStyle(context, kNeutralColor50),
+            counterText: '',
+            icon: icon,
+            suffix: suffixIcon),
       ),
     );
   }

@@ -51,3 +51,23 @@ String getCountry(String countryCode) {
   });
   return country!;
 }
+
+String getCountryFlag(String countryCode) {
+  String? flag = '';
+  countries.forEach((element) {
+    if (element.code == countryCode) {
+      flag = element.flag;
+    }
+  });
+  return flag!;
+}
+
+int getCountryPhoneLength(String countryCode) {
+  int length = 0;
+  countries.forEach((element) {
+    if (element.code == countryCode) {
+      length = element.maxLength;
+    }
+  });
+  return length;
+}
