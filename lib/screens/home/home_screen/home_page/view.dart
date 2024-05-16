@@ -117,7 +117,7 @@ class HomePagePage extends StatelessWidget {
                               color: kPrimaryColor,
                             ),
                             onClick: () {
-                              logic.onSendMoneyClicked();
+                              logic.onSendMoneyClicked(context);
                             }),
                         CPSendButton(
                             title: 'Buy airtime',
@@ -125,7 +125,7 @@ class HomePagePage extends StatelessWidget {
                             icon: Icon(CupertinoIcons.arrow_2_circlepath_circle,
                                 color: kPrimaryColor),
                             onClick: () {
-                              logic.onBuyAirtimeClicked();
+                              logic.onBuyAirtimeClicked(context);
                             })
                       ],
                     )
