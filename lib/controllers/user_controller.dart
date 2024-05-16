@@ -4,15 +4,24 @@ import 'package:crosspay/models/api_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:crosspay/api/local/hive_user_service.dart';
 import 'package:crosspay/models/crosspay_user.dart';
-import 'package:crosspay/models/crosspay_user.dart';
 import 'package:crosspay/utils/cross_pay_navigator.dart';
 import 'package:crosspay/screens/home/home_screen/view.dart';
 import 'package:crosspay/screens/authentication/welcome_screen/view.dart';
 
 class UserController extends GetxController {
+  @override
+  void onReady() {
+    super.onReady();
+    var user = getLocalUser();
+    if (user != null) {
+      getUserLiveData();
+    }
+  }
+
   CPApiRepository apiRepository = CPApiRepository();
   FirebaseAuth auth = FirebaseAuth.instance;
 
+  var crossPayUser = CrossPayUser().obs;
   Future<ApiResponse> getUser(String userId) async {
     var response = await apiRepository.getUser(userId);
     return response;
@@ -46,6 +55,12 @@ class UserController extends GetxController {
 
   Future<CrossPayUser?> getLocalUser() async {
     return HiveCrossPayUserService().getCrossPayUser();
+  }
+
+  Stream<CrossPayUser> getUserLiveData() {
+    Stream<CrossPayUser> userStream = apiRepository.getUserLiveData();
+    crossPayUser.bindStream(userStream);
+    return userStream;
   }
 
   void checkAuth() async {

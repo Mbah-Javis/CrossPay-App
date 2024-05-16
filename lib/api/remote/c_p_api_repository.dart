@@ -1,6 +1,7 @@
 import 'package:crosspay/models/api_response.dart';
 import 'package:crosspay/api/remote/api_repository.dart';
 import 'package:crosspay/api/remote/c_p_api_client.dart';
+import 'package:crosspay/models/crosspay_user.dart';
 
 class CPApiRepository implements ApiRepository {
   CPApiClient _apiClient = CPApiClient();
@@ -15,6 +16,11 @@ class CPApiRepository implements ApiRepository {
   @override
   Future<ApiResponse> getUser(String userId) {
     return _apiClient.getUser(userId);
+  }
+
+  @override
+  Stream<CrossPayUser> getUserLiveData() {
+    return _apiClient.getUserLiveData();
   }
 
   @override

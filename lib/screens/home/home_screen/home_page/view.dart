@@ -10,6 +10,7 @@ import 'package:crosspay/generated/assets.dart';
 import 'package:crosspay/widgets/buttons/c_p_send_button.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:crosspay/widgets/text/c_p_money_widget.dart';
 
 import 'logic.dart';
 
@@ -45,7 +46,9 @@ class HomePagePage extends StatelessWidget {
                 color: kLightOrangeColor,
                 borderRadius: BorderRadius.circular(18)),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                logic.onNotificationsClicked();
+              },
               child: const Icon(
                 Icons.notifications_rounded,
                 color: kPrimaryColor,
@@ -67,8 +70,8 @@ class HomePagePage extends StatelessWidget {
       child: CPBackground(
         assetName: Assets.imagesAfricanBg4,
         fit: BoxFit.cover,
-        child: FutureBuilder(
-            future: userController.getLocalUser(),
+        child: StreamBuilder(
+            stream: userController.getUserLiveData(),
             builder: (context, snapshot) {
               var user = snapshot.data;
               return Container(
@@ -84,13 +87,16 @@ class HomePagePage extends StatelessWidget {
                           .copyWith(color: kWhiteColor),
                     ),
                     CPSpacer().height(40),
-                    Text(
-                      'XAF 3,000,000',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: kWhiteColor,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    CPMoneyWidget(
+                        amount: user?.transactions?.totalAmount!,
+                        currency: user?.subAccount?.defaultCurrency!,
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(
+                                color: kWhiteColor,
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold)),
                     CPSpacer().heightSmall(),
                     Text(
                       'Total money sent',
@@ -110,13 +116,17 @@ class HomePagePage extends StatelessWidget {
                               CupertinoIcons.arrow_up_right_circle,
                               color: kPrimaryColor,
                             ),
-                            onClick: () {}),
+                            onClick: () {
+                              logic.onSendMoneyClicked();
+                            }),
                         CPSendButton(
                             title: 'Buy airtime',
                             backgroundColor: kLightOrangeColor,
                             icon: Icon(CupertinoIcons.arrow_2_circlepath_circle,
                                 color: kPrimaryColor),
-                            onClick: () {})
+                            onClick: () {
+                              logic.onBuyAirtimeClicked();
+                            })
                       ],
                     )
                   ],

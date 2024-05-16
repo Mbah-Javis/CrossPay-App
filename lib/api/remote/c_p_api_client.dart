@@ -2,13 +2,17 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:crosspay/models/api_response.dart';
 import 'package:crosspay/utils/c_p_constants.dart';
+import 'package:crosspay/models/crosspay_user.dart';
 
 class CPApiClient {
   final String baseUrl = CPConstants().BASE_URL!;
   final verifyHash = CPConstants().VERIFY_HASH!;
+  final FirebaseFirestore db = FirebaseFirestore.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
   late Map<String, String> headers;
 
   CPApiClient() {
@@ -115,6 +119,14 @@ class CPApiClient {
           message: 'No internet. Check your connection and try again',
           error: {});
     }
+  }
+
+  // Todo replace with websocket to get specific user details
+  Stream<CrossPayUser> getUserLiveData() {
+    Stream<DocumentSnapshot<Map<String, dynamic>>> stream =
+        db.collection('users').doc(user?.uid).snapshots();
+
+    return stream.map((value) => CrossPayUser.fromMap(value));
   }
 
   Future<ApiResponse> createUser(dynamic requestData) async {
