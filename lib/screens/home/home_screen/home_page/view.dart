@@ -11,6 +11,7 @@ import 'package:crosspay/widgets/buttons/c_p_send_button.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:crosspay/widgets/text/c_p_money_widget.dart';
+import 'package:crosspay/widgets/c_p_transaction_widget.dart';
 
 import 'logic.dart';
 
@@ -57,7 +58,7 @@ class HomePagePage extends StatelessWidget {
       ],
       headerWidget: _homeHeading(context),
       alwaysShowLeadingAndAction: true,
-      body: [],
+      body: [_buildTransactions(context)],
       fullyStretchable: true,
       expandedBody: _homeHeading(context),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -135,5 +136,54 @@ class HomePagePage extends StatelessWidget {
             }),
       ),
     );
+  }
+
+  Widget _buildTransactions(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Recent Transactions',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: kPrimaryColor),
+                ),
+                Text(
+                  'See all',
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: kPrimaryColor, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            CPSpacer().heightMedium(),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: List.generate(8, (index) {
+                  return Column(
+                    children: [
+                      CPTransactionWidget(),
+                      Divider(
+                        thickness: 0.1,
+                        color: Colors.transparent,
+                      )
+                    ],
+                  );
+                }),
+              ),
+            )
+          ],
+        ));
   }
 }
