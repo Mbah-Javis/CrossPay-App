@@ -6,6 +6,7 @@ import 'package:crosspay/widgets/c_p_loading_widget.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:crosspay/models/c_p_country_model.dart';
 import 'package:crosspay/utils/utils.dart';
+import 'c_p_image.dart';
 
 class CPAvailableCountry extends StatefulWidget {
   const CPAvailableCountry(
@@ -50,17 +51,10 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
               children: [
                 Row(
                   children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: CachedNetworkImage(
-                          imageUrl: '${widget.country.flag}',
-                          fit: BoxFit.cover,
-                          height: 35,
-                          width: 35,
-                          placeholder: (context, value) {
-                            return CPLoadingWidget();
-                          },
-                        )),
+                    CPImage(
+                        imageUrl: '${widget.country.flag}',
+                        height: 35,
+                        width: 35),
                     CPSpacer().width(15),
                     Text(
                       getCountry(widget.country.country!),
@@ -120,17 +114,8 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
                   color: kWhiteColor,
                   border: Border.all(color: kWhiteColor, width: 2),
                   borderRadius: BorderRadius.circular(100)),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: CachedNetworkImage(
-                    imageUrl: '${paymentOption.logo}',
-                    fit: BoxFit.cover,
-                    height: 30,
-                    width: 30,
-                    placeholder: (context, value) {
-                      return CPLoadingWidget();
-                    },
-                  )),
+              child: CPImage(
+                  imageUrl: '${paymentOption.logo}', height: 30, width: 30),
             ),
             CPSpacer().width(15),
             Text(

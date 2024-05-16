@@ -4,6 +4,7 @@ import 'package:crosspay/widgets/c_p_loading_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:crosspay/utils/text_formatter.dart';
+import 'package:crosspay/widgets/c_p_image.dart';
 
 class CPTransactionWidget extends StatelessWidget {
   const CPTransactionWidget({Key? key}) : super(key: key);
@@ -26,32 +27,18 @@ class CPTransactionWidget extends StatelessWidget {
                     border: Border.all(color: kPrimaryColor, width: 2)),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          'https://ik.imagekit.io/tp/20220131-mtn-momo-ghana-logo.png',
-                      fit: BoxFit.cover,
-                      height: 40,
-                      width: 40,
-                      placeholder: (context, value) {
-                        return CPLoadingWidget();
-                      },
-                    )),
+                    child: CPImage(
+                        imageUrl:
+                            'https://ik.imagekit.io/tp/20220131-mtn-momo-ghana-logo.png')),
               ),
               Positioned(
                   bottom: 0,
                   right: 0,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/1280px-Flag_of_Cameroon.svg.png',
-                        fit: BoxFit.cover,
-                        height: 17,
-                        width: 17,
-                        placeholder: (context, value) {
-                          return CPLoadingWidget();
-                        },
-                      )))
+                  child: CPImage(
+                      imageUrl:
+                          'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/1280px-Flag_of_Cameroon.svg.png',
+                      height: 17,
+                      width: 17))
             ],
           ),
           CPSpacer().width(10),
