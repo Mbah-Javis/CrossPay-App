@@ -31,6 +31,11 @@ class CPApiRepository implements ApiRepository {
   }
 
   @override
+  Future<ApiResponse> initiateTransfer(dynamic requestData) {
+    return _apiClient.initiateTransfer(requestData);
+  }
+
+  @override
   Future<List<CPCountryModel>> getAvailableCountries() {
     return _apiClient.getAvailableCountries();
   }

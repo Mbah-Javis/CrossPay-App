@@ -33,7 +33,7 @@ class MobileMoneyController extends GetxController {
     CPAlerts().showInfo('Coming Soon', 'Buying airtime is not yet available');
   }
 
-  void initiateTransfer(
+  Future<ApiResponse> initiateTransfer(
       int amount,
       int receiveAmount,
       int senderNumber,
@@ -58,6 +58,9 @@ class MobileMoneyController extends GetxController {
       "receiver_number": receiverNumber,
       "receiver_name": receiverName
     };
+
+    ApiResponse response = await apiRepository.initiateTransfer(requestData);
+    return response;
   }
 
   Stream<List<CPTransaction>> getUserTransactions() async {

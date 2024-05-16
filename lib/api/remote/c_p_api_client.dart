@@ -63,6 +63,18 @@ class CPApiClient {
     }
   }
 
+  Future<ApiResponse> createUser(dynamic requestData) async {
+    String apiRoute = 'users/new';
+    final response = await postRequest(requestData, apiRoute);
+    return response;
+  }
+
+  Future<ApiResponse> initiateTransfer(dynamic requestData) async {
+    String apiRoute = 'money-transfer/franco-phone';
+    final response = await postRequest(requestData, apiRoute);
+    return response;
+  }
+
   Future<ApiResponse> getRequest(String apiRoute) async {
     await setAuthorization();
     try {
@@ -148,11 +160,5 @@ class CPApiClient {
         .orderBy('date_created', descending: false)
         .get();
     return CPCountryModel.fromList(countries.docs);
-  }
-
-  Future<ApiResponse> createUser(dynamic requestData) async {
-    String apiRoute = 'users/new';
-    final response = await postRequest(requestData, apiRoute);
-    return response;
   }
 }

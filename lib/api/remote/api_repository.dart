@@ -8,6 +8,7 @@ abstract class ApiRepository {
   Future<ApiResponse> getUser(String userId);
   Stream<CrossPayUser> getUserLiveData();
   Future<ApiResponse> createUser(dynamic requestData);
+  Future<ApiResponse> initiateTransfer(dynamic requestData);
   Future<List<CPCountryModel>> getAvailableCountries();
   Stream<List<CPTransaction>> getUserTransactions();
 }
