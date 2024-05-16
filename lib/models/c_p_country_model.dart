@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CPCountryModel {
   final String? country;
+  final String? currency;
   final int? countryCode;
   final String? dateCreate;
   final String? flag;
@@ -9,6 +10,7 @@ class CPCountryModel {
 
   CPCountryModel(
       {this.country,
+      this.currency,
       this.countryCode,
       this.dateCreate,
       this.flag,
@@ -17,6 +19,7 @@ class CPCountryModel {
   factory CPCountryModel.fromJson(Map<String, dynamic> json) {
     return CPCountryModel(
       country: json['country'],
+      currency: json['currency'],
       countryCode: json['country_code'],
       dateCreate: json['date_create'],
       flag: json['flag'],
@@ -27,6 +30,7 @@ class CPCountryModel {
   factory CPCountryModel.fromMap(DocumentSnapshot<Map<String, dynamic>> json) {
     return CPCountryModel(
       country: json['country'],
+      currency: json['currency'],
       countryCode: json['country_code'],
       dateCreate: json['date_create'],
       flag: json['flag'],
