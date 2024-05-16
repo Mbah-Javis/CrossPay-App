@@ -2,6 +2,7 @@ import 'package:crosspay/models/api_response.dart';
 import 'package:crosspay/api/remote/api_repository.dart';
 import 'package:crosspay/api/remote/c_p_api_client.dart';
 import 'package:crosspay/models/crosspay_user.dart';
+import 'package:crosspay/models/c_p_country_model.dart';
 
 class CPApiRepository implements ApiRepository {
   CPApiClient _apiClient = CPApiClient();
@@ -26,5 +27,10 @@ class CPApiRepository implements ApiRepository {
   @override
   Future<ApiResponse> createUser(dynamic requestData) {
     return _apiClient.createUser(requestData);
+  }
+
+  @override
+  Future<List<CPCountryModel>> getAvailableCountries() {
+    return _apiClient.getAvailableCountries();
   }
 }

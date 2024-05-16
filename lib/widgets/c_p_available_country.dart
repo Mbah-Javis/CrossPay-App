@@ -4,10 +4,12 @@ import 'package:crosspay/theme/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crosspay/widgets/c_p_loading_widget.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
+import 'package:crosspay/models/c_p_country_model.dart';
 
 class CPAvailableCountry extends StatefulWidget {
-  const CPAvailableCountry({Key? key}) : super(key: key);
+  const CPAvailableCountry({Key? key, required this.country}) : super(key: key);
 
+  final CPCountryModel country;
   @override
   _CPAvailableCountryState createState() => _CPAvailableCountryState();
 }
@@ -43,8 +45,7 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
                     ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: CachedNetworkImage(
-                          imageUrl:
-                              'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/1280px-Flag_of_Cameroon.svg.png',
+                          imageUrl: '${widget.country.flag}',
                           fit: BoxFit.cover,
                           height: 35,
                           width: 35,
@@ -54,7 +55,7 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
                         )),
                     CPSpacer().width(15),
                     Text(
-                      'Cameroon',
+                      '${widget.country.country}',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
@@ -79,15 +80,15 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
     return Container(
       margin: EdgeInsets.only(left: 15),
       child: Column(
-        children: [
-          _mobileMoneyOption(),
-          _mobileMoneyOption(),
-        ],
+        children: List.generate(
+            widget.country!.paymentOptions!.length!,
+            (index) =>
+                _mobileMoneyOption(widget.country.paymentOptions![index])),
       ),
     );
   }
 
-  Widget _mobileMoneyOption() {
+  Widget _mobileMoneyOption(PaymentOption paymentOption) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
@@ -95,21 +96,26 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
           color: kInputBgColor, borderRadius: BorderRadius.circular(15)),
       child: Row(
         children: [
-          ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: CachedNetworkImage(
-                imageUrl:
-                    'https://mir-s3-cdn-cf.behance.net/projects/404/44804e195504705.Y3JvcCw4MDgsNjMyLDAsMA.jpg',
-                fit: BoxFit.cover,
-                height: 30,
-                width: 30,
-                placeholder: (context, value) {
-                  return CPLoadingWidget();
-                },
-              )),
+          Container(
+            decoration: BoxDecoration(
+                color: kWhiteColor,
+                border: Border.all(color: kWhiteColor, width: 2),
+                borderRadius: BorderRadius.circular(100)),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: CachedNetworkImage(
+                  imageUrl: '${paymentOption.logo}',
+                  fit: BoxFit.cover,
+                  height: 30,
+                  width: 30,
+                  placeholder: (context, value) {
+                    return CPLoadingWidget();
+                  },
+                )),
+          ),
           CPSpacer().width(15),
           Text(
-            'MTN Mobile Money',
+            '${paymentOption.name}',
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ],

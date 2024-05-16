@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:crosspay/models/api_response.dart';
 import 'package:crosspay/utils/c_p_constants.dart';
 import 'package:crosspay/models/crosspay_user.dart';
+import 'package:crosspay/models/c_p_country_model.dart';
 
 class CPApiClient {
   final String baseUrl = CPConstants().BASE_URL!;
@@ -127,6 +128,14 @@ class CPApiClient {
         db.collection('users').doc(user?.uid).snapshots();
 
     return stream.map((value) => CrossPayUser.fromMap(value));
+  }
+
+  Future<List<CPCountryModel>> getAvailableCountries() async {
+    var countries = await db
+        .collection('avialable_countries')
+        .orderBy('date_created', descending: false)
+        .get();
+    return CPCountryModel.fromList(countries.docs);
   }
 
   Future<ApiResponse> createUser(dynamic requestData) async {
