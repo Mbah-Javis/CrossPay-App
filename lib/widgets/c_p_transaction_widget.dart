@@ -12,9 +12,10 @@ class CPTransactionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.symmetric(vertical: 0),
+      margin: EdgeInsets.symmetric(vertical: 8),
       padding: EdgeInsets.all(3),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Stack(
             children: [

@@ -58,7 +58,7 @@ class HomePagePage extends StatelessWidget {
       ],
       headerWidget: _homeHeading(context),
       alwaysShowLeadingAndAction: true,
-      body: [_buildTransactions(context)],
+      body: [_buildTransactions(context), CPSpacer().height(100)],
       fullyStretchable: true,
       expandedBody: _homeHeading(context),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -162,7 +162,7 @@ class HomePagePage extends StatelessWidget {
                 ),
               ],
             ),
-            CPSpacer().heightMedium(),
+            CPSpacer().heightSmall(),
             Container(
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
@@ -170,17 +170,7 @@ class HomePagePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
-                children: List.generate(8, (index) {
-                  return Column(
-                    children: [
-                      CPTransactionWidget(),
-                      Divider(
-                        thickness: 0.1,
-                        color: Colors.transparent,
-                      )
-                    ],
-                  );
-                }),
+                children: List.generate(8, (index) => CPTransactionWidget()),
               ),
             )
           ],
