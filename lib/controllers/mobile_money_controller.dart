@@ -3,6 +3,7 @@ import 'package:crosspay/api/remote/c_p_api_repository.dart';
 import 'package:crosspay/models/api_response.dart';
 import 'package:crosspay/models/c_p_country_model.dart';
 import 'package:crosspay/utils/c_p_alerts.dart';
+import 'package:crosspay/models/c_p_transaction.dart';
 
 class MobileMoneyController extends GetxController {
   CPApiRepository apiRepository = CPApiRepository();
@@ -26,5 +27,10 @@ class MobileMoneyController extends GetxController {
 
   void buyAirtime(CPCountryModel country, PaymentOption option) {
     CPAlerts().showInfo('Coming Soon', 'Buying airtime is not yet available');
+  }
+
+  Stream<List<CPTransaction>> getUserTransactions() async {
+    var stream = await apiRepository.getUserTransactions();
+    return stream;
   }
 }
