@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crosspay/widgets/c_p_loading_widget.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:crosspay/models/c_p_country_model.dart';
+import 'package:crosspay/utils/utils.dart';
 
 class CPAvailableCountry extends StatefulWidget {
   const CPAvailableCountry({Key? key, required this.country}) : super(key: key);
@@ -55,7 +56,7 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
                         )),
                     CPSpacer().width(15),
                     Text(
-                      '${widget.country.country}',
+                      getCountry(widget.country.country!),
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],

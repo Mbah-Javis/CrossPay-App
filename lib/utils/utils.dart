@@ -5,6 +5,7 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:intl_phone_field/countries.dart';
 
 Future<String?> getPlayerID() async {
   String? playerId = OneSignal.User.pushSubscription.id;
@@ -39,4 +40,14 @@ Future<DeviceInfo> getDeviceInfo() async {
   }
 
   return deviceInfoModel;
+}
+
+String getCountry(String countryCode) {
+  String? country = '';
+  countries.forEach((element) {
+    if (element.code == countryCode) {
+      country = element.nameTranslations['en'];
+    }
+  });
+  return country!;
 }
