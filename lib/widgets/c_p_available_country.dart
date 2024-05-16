@@ -8,9 +8,12 @@ import 'package:crosspay/models/c_p_country_model.dart';
 import 'package:crosspay/utils/utils.dart';
 
 class CPAvailableCountry extends StatefulWidget {
-  const CPAvailableCountry({Key? key, required this.country}) : super(key: key);
+  const CPAvailableCountry(
+      {Key? key, required this.country, required this.onOptionSelected})
+      : super(key: key);
 
   final CPCountryModel country;
+  final Function(PaymentOption) onOptionSelected;
   @override
   _CPAvailableCountryState createState() => _CPAvailableCountryState();
 }
@@ -90,36 +93,41 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
   }
 
   Widget _mobileMoneyOption(PaymentOption paymentOption) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
-      decoration: BoxDecoration(
-          color: kInputBgColor, borderRadius: BorderRadius.circular(15)),
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                color: kWhiteColor,
-                border: Border.all(color: kWhiteColor, width: 2),
-                borderRadius: BorderRadius.circular(100)),
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: CachedNetworkImage(
-                  imageUrl: '${paymentOption.logo}',
-                  fit: BoxFit.cover,
-                  height: 30,
-                  width: 30,
-                  placeholder: (context, value) {
-                    return CPLoadingWidget();
-                  },
-                )),
-          ),
-          CPSpacer().width(15),
-          Text(
-            '${paymentOption.name}',
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-        ],
+    return InkWell(
+      onTap: () {
+        widget.onOptionSelected(paymentOption);
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+        decoration: BoxDecoration(
+            color: kInputBgColor, borderRadius: BorderRadius.circular(15)),
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: kWhiteColor,
+                  border: Border.all(color: kWhiteColor, width: 2),
+                  borderRadius: BorderRadius.circular(100)),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: CachedNetworkImage(
+                    imageUrl: '${paymentOption.logo}',
+                    fit: BoxFit.cover,
+                    height: 30,
+                    width: 30,
+                    placeholder: (context, value) {
+                      return CPLoadingWidget();
+                    },
+                  )),
+            ),
+            CPSpacer().width(15),
+            Text(
+              '${paymentOption.name}',
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+          ],
+        ),
       ),
     );
   }

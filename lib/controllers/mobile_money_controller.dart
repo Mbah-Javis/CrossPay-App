@@ -9,4 +9,8 @@ class MobileMoneyController extends GetxController {
   Future<List<CPCountryModel>> getAvailableCountries() async {
     return await apiRepository.getAvailableCountries();
   }
+
+  void onOptionSelected(CPCountryModel country, PaymentOption option) {
+    print(option.name);
+  }
 }

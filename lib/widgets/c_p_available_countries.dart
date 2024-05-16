@@ -37,7 +37,13 @@ class _CPAvailableCountriesState extends State<CPAvailableCountries> {
                     itemCount: countries.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return CPAvailableCountry(country: countries[index]);
+                      return CPAvailableCountry(
+                        country: countries[index],
+                        onOptionSelected: (selectedOption) {
+                          mobileMoneyController.onOptionSelected(
+                              countries[index], selectedOption);
+                        },
+                      );
                     })
                 : _noCountriesFound();
           }),
