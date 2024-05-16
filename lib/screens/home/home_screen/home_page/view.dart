@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 import 'package:crosspay/theme/annotated_system_ui.dart';
 import 'package:crosspay/widgets/c_p_background.dart';
 import 'package:crosspay/generated/assets.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:crosspay/theme/colors.dart';
 import 'package:draggable_home/draggable_home.dart';
 import 'package:crosspay/controllers/user_controller.dart';
 import 'package:crosspay/generated/assets.dart';
+import 'package:crosspay/widgets/buttons/c_p_send_button.dart';
+import 'package:crosspay/utils/c_p_spacer.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'logic.dart';
 
@@ -62,7 +64,6 @@ class HomePagePage extends StatelessWidget {
 
   Widget _homeHeading(BuildContext context) {
     return Container(
-      height: 250,
       child: CPBackground(
         assetName: Assets.imagesAfricanBg4,
         fit: BoxFit.cover,
@@ -71,7 +72,7 @@ class HomePagePage extends StatelessWidget {
             builder: (context, snapshot) {
               var user = snapshot.data;
               return Container(
-                color: kPrimaryColor.withOpacity(0.7),
+                color: kPrimaryColor.withOpacity(0.8),
                 padding: EdgeInsets.only(top: 45),
                 child: Column(
                   children: [
@@ -79,8 +80,44 @@ class HomePagePage extends StatelessWidget {
                       '${user?.firstName} ${user?.lastName}',
                       style: Theme.of(context)
                           .textTheme
-                          .titleSmall!
+                          .titleLarge!
                           .copyWith(color: kWhiteColor),
+                    ),
+                    CPSpacer().height(40),
+                    Text(
+                      'XAF 3,000,000',
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: kWhiteColor,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    CPSpacer().heightSmall(),
+                    Text(
+                      'Total money sent',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: kInputBgColor.withOpacity(0.6)),
+                    ),
+                    CPSpacer().height(40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CPSendButton(
+                            title: 'Send money',
+                            backgroundColor: kLightOrangeColor,
+                            icon: Icon(
+                              CupertinoIcons.arrow_up_right_circle,
+                              color: kPrimaryColor,
+                            ),
+                            onClick: () {}),
+                        CPSendButton(
+                            title: 'Buy airtime',
+                            backgroundColor: kLightOrangeColor,
+                            icon: Icon(CupertinoIcons.arrow_2_circlepath_circle,
+                                color: kPrimaryColor),
+                            onClick: () {})
+                      ],
                     )
                   ],
                 ),
