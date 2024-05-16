@@ -9,10 +9,14 @@ import 'package:crosspay/utils/utils.dart';
 
 class CPAvailableCountry extends StatefulWidget {
   const CPAvailableCountry(
-      {Key? key, required this.country, required this.onOptionSelected})
+      {Key? key,
+      required this.country,
+      required this.isSendingMoney,
+      required this.onOptionSelected})
       : super(key: key);
 
   final CPCountryModel country;
+  final bool isSendingMoney;
   final Function(PaymentOption) onOptionSelected;
   @override
   _CPAvailableCountryState createState() => _CPAvailableCountryState();
@@ -123,7 +127,9 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
             ),
             CPSpacer().width(15),
             Text(
-              '${paymentOption.name}',
+              widget.isSendingMoney
+                  ? '${paymentOption.name}'
+                  : '${paymentOption.network}',
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ],

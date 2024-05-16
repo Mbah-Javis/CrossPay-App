@@ -39,9 +39,12 @@ class _CPAvailableCountriesState extends State<CPAvailableCountries> {
                     itemBuilder: (context, index) {
                       return CPAvailableCountry(
                         country: countries[index],
+                        isSendingMoney: widget.isSendingMoney,
                         onOptionSelected: (selectedOption) {
                           mobileMoneyController.onOptionSelected(
-                              countries[index], selectedOption);
+                              countries[index],
+                              selectedOption,
+                              widget.isSendingMoney);
                         },
                       );
                     })

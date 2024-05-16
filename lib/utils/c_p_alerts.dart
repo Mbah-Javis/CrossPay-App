@@ -28,7 +28,7 @@ class CPAlerts {
   SnackbarController showInfo(String title, String message) {
     return Get.snackbar(title, message,
         colorText: kWhiteColor,
-        backgroundColor: kPrimaryColor,
+        backgroundColor: kLightBlueColor,
         duration: const Duration(seconds: 5));
   }
 
