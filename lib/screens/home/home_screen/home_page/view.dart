@@ -12,6 +12,7 @@ import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:crosspay/widgets/text/c_p_money_widget.dart';
 import 'package:crosspay/widgets/c_p_transaction_widget.dart';
+import 'package:crosspay/controllers/mobile_money_controller.dart';
 
 import 'logic.dart';
 
@@ -21,6 +22,7 @@ class HomePagePage extends StatelessWidget {
   final logic = Get.put(HomePageLogic());
   final state = Get.find<HomePageLogic>().state;
   var userController = Get.put(UserController());
+  var mobileMoneyController = Get.put(MobileMoneyController());
 
   @override
   Widget build(BuildContext context) {
@@ -165,16 +167,20 @@ class HomePagePage extends StatelessWidget {
               ],
             ),
             CPSpacer().heightSmall(),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                children: List.generate(8, (index) => CPTransactionWidget()),
-              ),
-            )
+            StreamBuilder(
+                stream: mobileMoneyController.getUserTransactions(),
+                builder: (context, snapshot) {
+                  return snapshot.data != null
+                      ? ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          itemBuilder: (context, index) {
+                            return CPTransactionWidget(
+                                transaction: snapshot.data![index]);
+                          })
+                      : Container();
+                }),
           ],
         ));
   }

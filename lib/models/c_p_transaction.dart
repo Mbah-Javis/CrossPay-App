@@ -3,13 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 enum TransactionStatus { pending, completed, failed, inprogress }
 
 class CPTransaction {
-  final TransactionStatus? status;
-  final double? amount;
+  final String? status;
+  final int? amount;
   final String? uuid;
   final String? userId;
-  final TransactionStatus? deliveredStatus;
+  final String? deliveredStatus;
   final String? email;
-  final String? txId;
+  final int? txId;
   final String? txRef;
   final Meta? meta;
 
@@ -27,11 +27,11 @@ class CPTransaction {
 
   factory CPTransaction.fromJson(Map<String, dynamic> json) {
     return CPTransaction(
-      status: TransactionStatus.values[json['status']],
+      status: json['status'],
       amount: json['amount'],
       uuid: json['uuid'],
       userId: json['user_id'],
-      deliveredStatus: TransactionStatus.values[json['delivered_status']],
+      deliveredStatus: json['delivered_status'],
       email: json['email'],
       txId: json['tx_id'],
       txRef: json['tx_ref'],
@@ -41,11 +41,11 @@ class CPTransaction {
 
   factory CPTransaction.fromMap(DocumentSnapshot<Map<String, dynamic>> json) {
     return CPTransaction(
-      status: TransactionStatus.values[json['status']],
+      status: json['status'],
       amount: json['amount'],
       uuid: json['uuid'],
       userId: json['user_id'],
-      deliveredStatus: TransactionStatus.values[json['delivered_status']],
+      deliveredStatus: json['delivered_status'],
       email: json['email'],
       txId: json['tx_id'],
       txRef: json['tx_ref'],
@@ -62,22 +62,22 @@ class CPTransaction {
 }
 
 class Meta {
-  final double amount;
+  final int amount;
   final String uuid;
   final String userId;
   final String sender;
-  final String mobileNumber;
+  final int mobileNumber;
   final String senderCountry;
   final String currency;
   final int countryCode;
   final String network;
   final String networkName;
   final String operator;
-  final double receiveAmount;
+  final int receiveAmount;
   final String receiverCurrency;
   final String receiverCountry;
   final int receiverCountryCode;
-  final String receiverNumber;
+  final int receiverNumber;
   final String receiverName;
   final String dateCreated;
   final String txRef;

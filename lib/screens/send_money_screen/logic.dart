@@ -27,7 +27,10 @@ class SendMoneyScreenLogic extends GetxController {
         CPAlerts().showSuccess('Transaction initiated',
             'Proceed to enter your pin and complete the transaction');
         clear();
-        CrossPayNavigator().goBack();
+        Future.delayed(Duration(seconds: 7), () {
+          CrossPayNavigator().goBack();
+          CrossPayNavigator().goBack();
+        });
       } else {
         CPAlerts().showError('Transaction error', response.message);
       }

@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 
 class TextFormatter {
   TextFormatter() {}
@@ -25,5 +26,16 @@ class TextFormatter {
         formattedAmount.replaceAll(symbol, '');
 
     return '$formattedAmountWithoutSymbol $currency';
+  }
+
+  String formatDateWithTime(String isoDate) {
+    try {
+      final DateTime date = DateTime.parse(isoDate);
+      final DateFormat formatter =
+          DateFormat('MMMM dd, yyyy, H:m a', Get.deviceLocale.toString());
+      return formatter.format(date);
+    } catch (e) {
+      return isoDate;
+    }
   }
 }

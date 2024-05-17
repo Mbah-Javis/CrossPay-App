@@ -5,9 +5,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:crosspay/utils/text_formatter.dart';
 import 'package:crosspay/widgets/c_p_image.dart';
+import 'package:crosspay/models/c_p_transaction.dart';
+import 'package:crosspay/utils/text_formatter.dart';
+import 'package:crosspay/controllers/mobile_money_controller.dart';
+import 'package:get/get.dart';
 
 class CPTransactionWidget extends StatelessWidget {
-  const CPTransactionWidget({Key? key}) : super(key: key);
+  CPTransactionWidget({Key? key, required this.transaction}) : super(key: key);
+
+  final CPTransaction transaction;
+
+  var momoController = Get.put(MobileMoneyController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,28 +26,40 @@ class CPTransactionWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: kWhiteColor,
-                    borderRadius: BorderRadius.circular(100)),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: CPImage(
-                        imageUrl:
-                            'https://ik.imagekit.io/tp/20220131-mtn-momo-ghana-logo.png')),
-              ),
-              Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: CPImage(
-                      imageUrl:
-                          'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/1280px-Flag_of_Cameroon.svg.png',
-                      height: 17,
-                      width: 17))
-            ],
-          ),
+          FutureBuilder(
+              future: momoController.getAvailableCountries(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState != ConnectionState.done) {
+                  return Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: kWhiteColor,
+                        borderRadius: BorderRadius.circular(100)),
+                  );
+                }
+                var countryInfo = snapshot.data!.firstWhere((element) =>
+                    element.country == transaction.meta?.receiverCountry);
+                var option = countryInfo.paymentOptions?.firstWhere(
+                    (element) => element.network == transaction.meta?.network);
+                return Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: kWhiteColor,
+                          borderRadius: BorderRadius.circular(100)),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: CPImage(imageUrl: option!.logo)),
+                    ),
+                    Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: CPImage(
+                            imageUrl: countryInfo.flag!, height: 17, width: 17))
+                  ],
+                );
+              }),
           CPSpacer().width(10),
           Expanded(
               child: Column(
@@ -48,9 +68,10 @@ class CPTransactionWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Mbah Javis'),
+                  Text('${transaction.meta?.receiverName}'),
                   Text(
-                    'May 16, 07:07 PM',
+                    TextFormatter()
+                        .formatDateWithTime('${transaction.meta?.dateCreated}'),
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: kPrimaryColor.withOpacity(0.4), fontSize: 9),
                   ),
@@ -61,21 +82,22 @@ class CPTransactionWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Completed',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: kGreenColor, fontSize: 11),
+                    '${transaction.deliveredStatus}',
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: getColor('${transaction.deliveredStatus}'),
+                        fontSize: 11),
                   ),
                   Text(
-                    TextFormatter().formatCurrency('XAF', 20000),
+                    TextFormatter().formatCurrency(
+                        '${transaction.meta?.currency}',
+                        transaction!.amount!.toDouble()!),
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: kPrimaryColor, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
               Text(
-                'MTN Mobile Money',
+                '${transaction.meta?.networkName}',
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     color: kPrimaryColor.withOpacity(0.4), fontSize: 9),
               ),
@@ -84,5 +106,20 @@ class CPTransactionWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Color getColor(String status) {
+    switch (status) {
+      case "pending":
+        return kWarningColor;
+      case "inprogress":
+        return kLightBlueColor;
+      case "completed":
+        return kGreenColor;
+      case "failed":
+        return kErrorColor;
+      default:
+        return kWarningColor;
+    }
   }
 }

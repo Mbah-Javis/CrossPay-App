@@ -148,9 +148,13 @@ class CPApiClient {
         .collection('user_transactions')
         .doc(user?.uid)
         .collection('transactions')
+        .orderBy('meta.date_created', descending: true)
         .snapshots();
 
-    return stream.map((value) => CPTransaction.fromList(value.docs));
+    Stream<List<CPTransaction>> transactions = stream.map(
+        (event) => event.docs.map((e) => CPTransaction.fromMap(e)).toList());
+    print(transactions.length);
+    return transactions;
   }
 
   // TODO: Replace with api endpoint
