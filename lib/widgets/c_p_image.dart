@@ -4,8 +4,11 @@ import 'package:crosspay/widgets/c_p_loading_widget.dart';
 
 class CPImage extends StatelessWidget {
   const CPImage(
-      {Key? key, required this.imageUrl, this.height, this.width, this.radius})
-      : super(key: key);
+      {super.key,
+      required this.imageUrl,
+      this.height,
+      this.width,
+      this.radius});
 
   final String imageUrl;
   final double? height;
@@ -22,7 +25,7 @@ class CPImage extends StatelessWidget {
           height: height ?? 40,
           width: width ?? 40,
           placeholder: (context, value) {
-            return Center(
+            return const Center(
               child: CPLoadingWidget(),
             );
           },
