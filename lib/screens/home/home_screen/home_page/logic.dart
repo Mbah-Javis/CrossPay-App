@@ -12,16 +12,16 @@ class HomePageLogic extends GetxController {
 
   void onSendMoneyClicked(BuildContext context) {
     CPAlerts().showBottomSheet(context, 'Send Money To',
-        CPAvailableCountries(isSendingMoney: true), true);
+        const CPAvailableCountries(isSendingMoney: true), true);
   }
 
   void onBuyAirtimeClicked(BuildContext context) {
     CPAlerts().showBottomSheet(context, 'Buy Airtime',
-        CPAvailableCountries(isSendingMoney: false), true);
+        const CPAvailableCountries(isSendingMoney: false), true);
   }
 
-  void showCountriesList(BuildContext context, String title) async {
+  void showCountriesList(BuildContext context, String title) {
     CPAlerts().showBottomSheet(
-        context, title, CPAvailableCountries(isSendingMoney: true), true);
+        context, title, const CPAvailableCountries(isSendingMoney: true), true);
   }
 }
