@@ -7,10 +7,9 @@ import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:crosspay/generated/assets.dart';
 
 import 'logic.dart';
-import 'state.dart';
 
 class WelcomeScreenPage extends StatelessWidget {
-  WelcomeScreenPage({Key? key}) : super(key: key);
+  WelcomeScreenPage({super.key});
 
   final logic = Get.put(WelcomeScreenLogic());
   final state = Get.find<WelcomeScreenLogic>().state;
@@ -22,7 +21,7 @@ class WelcomeScreenPage extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Container(
         alignment: Alignment.bottomCenter,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage(
@@ -36,7 +35,7 @@ class WelcomeScreenPage extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(40))),
+                      const BorderRadius.vertical(top: Radius.circular(40))),
               padding: CPSpacer().screenPadding().copyWith(bottom: 40, top: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
