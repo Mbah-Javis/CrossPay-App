@@ -106,7 +106,6 @@ class CPApiClient {
     try {
       final response = await http.get(Uri.parse('$baseUrl/users/get/$userId'),
           headers: headers);
-      print(response.statusCode);
       if (response.statusCode == 200) {
         return ApiResponse(
             successful: true,
