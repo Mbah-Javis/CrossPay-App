@@ -1,6 +1,19 @@
-# CrossPay
+# CrossPay Mobile App
 
-CrossPay mobile app
+## Project Description
+
+CrossPay is a mobile application that lets you transfer money from your mobile money account <br>
+to any other mobile money account in Africa regardless of the mobile money operator.
+
+## Key Features
+- Authentication (Firebase Phone authentication)
+- Send Money
+- Buy Airtime
+- Transaction History
+
+## Backend 
+CrossPay runs on a Node.js backend deployed to Google Cloud <br>
+The repository can be found [here](https://github.com/Mbah-Javis/CrossPay-Backend)
 
 ## Getting Started
 
