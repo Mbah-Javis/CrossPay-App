@@ -3,11 +3,16 @@ import 'package:get/get.dart';
 import 'package:crosspay/theme/annotated_system_ui.dart';
 import 'package:crosspay/widgets/c_p_background.dart';
 import 'package:crosspay/generated/assets.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:crosspay/theme/colors.dart';
 import 'package:draggable_home/draggable_home.dart';
 import 'package:crosspay/controllers/user_controller.dart';
 import 'package:crosspay/generated/assets.dart';
+import 'package:crosspay/widgets/buttons/c_p_send_button.dart';
+import 'package:crosspay/utils/c_p_spacer.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:crosspay/widgets/text/c_p_money_widget.dart';
+import 'package:crosspay/widgets/c_p_transaction_widget.dart';
+import 'package:crosspay/controllers/mobile_money_controller.dart';
 
 import 'logic.dart';
 
@@ -17,6 +22,7 @@ class HomePagePage extends StatelessWidget {
   final logic = Get.put(HomePageLogic());
   final state = Get.find<HomePageLogic>().state;
   var userController = Get.put(UserController());
+  var mobileMoneyController = Get.put(MobileMoneyController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +49,9 @@ class HomePagePage extends StatelessWidget {
                 color: kLightOrangeColor,
                 borderRadius: BorderRadius.circular(18)),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                logic.onNotificationsClicked();
+              },
               child: const Icon(
                 Icons.notifications_rounded,
                 color: kPrimaryColor,
@@ -52,7 +60,7 @@ class HomePagePage extends StatelessWidget {
       ],
       headerWidget: _homeHeading(context),
       alwaysShowLeadingAndAction: true,
-      body: [],
+      body: [_buildTransactions(context), CPSpacer().height(100)],
       fullyStretchable: true,
       expandedBody: _homeHeading(context),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -62,16 +70,15 @@ class HomePagePage extends StatelessWidget {
 
   Widget _homeHeading(BuildContext context) {
     return Container(
-      height: 250,
       child: CPBackground(
         assetName: Assets.imagesAfricanBg4,
         fit: BoxFit.cover,
-        child: FutureBuilder(
-            future: userController.getLocalUser(),
+        child: StreamBuilder(
+            stream: userController.getUserLiveData(),
             builder: (context, snapshot) {
               var user = snapshot.data;
               return Container(
-                color: kPrimaryColor.withOpacity(0.7),
+                color: kPrimaryColor.withOpacity(0.8),
                 padding: EdgeInsets.only(top: 45),
                 child: Column(
                   children: [
@@ -81,6 +88,49 @@ class HomePagePage extends StatelessWidget {
                           .textTheme
                           .titleSmall!
                           .copyWith(color: kWhiteColor),
+                    ),
+                    CPSpacer().height(40),
+                    CPMoneyWidget(
+                        amount: user?.transactions?.totalAmount!,
+                        currency: user?.subAccount?.defaultCurrency!,
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(
+                                color: kWhiteColor,
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold)),
+                    CPSpacer().heightSmall(),
+                    Text(
+                      'Total money sent',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: kInputBgColor.withOpacity(0.6)),
+                    ),
+                    CPSpacer().height(40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CPSendButton(
+                            title: 'Send money',
+                            backgroundColor: kLightOrangeColor,
+                            icon: Icon(
+                              CupertinoIcons.arrow_up_right_circle,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            onClick: () {
+                              logic.onSendMoneyClicked(context);
+                            }),
+                        CPSendButton(
+                            title: 'Buy airtime',
+                            backgroundColor: kLightOrangeColor,
+                            icon: Icon(CupertinoIcons.arrow_2_circlepath_circle,
+                                color: Theme.of(context).primaryColor),
+                            onClick: () {
+                              logic.onBuyAirtimeClicked(context);
+                            })
+                      ],
                     )
                   ],
                 ),
@@ -88,5 +138,50 @@ class HomePagePage extends StatelessWidget {
             }),
       ),
     );
+  }
+
+  Widget _buildTransactions(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Transactions',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(color: Theme.of(context).primaryColor),
+                ),
+                Text(
+                  'See all',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(color: Theme.of(context).primaryColor),
+                ),
+              ],
+            ),
+            CPSpacer().heightSmall(),
+            StreamBuilder(
+                stream: mobileMoneyController.getUserTransactions(),
+                builder: (context, snapshot) {
+                  return snapshot.data != null
+                      ? ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          itemBuilder: (context, index) {
+                            return CPTransactionWidget(
+                                transaction: snapshot.data![index]);
+                          })
+                      : Container();
+                }),
+          ],
+        ));
   }
 }

@@ -25,8 +25,8 @@ class CPOnboardingHeading extends StatelessWidget {
             title,
             style: Theme.of(context)
                 .textTheme
-                .titleLarge!
-                .copyWith(color: kBlackColor, fontWeight: FontWeight.bold),
+                .titleMedium!
+                .copyWith(color: kBlackColor),
           ),
         ),
       ],

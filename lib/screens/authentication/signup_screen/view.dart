@@ -68,7 +68,7 @@ class SignupScreenPage extends StatelessWidget {
               children: [
                 Text(
                   'First name',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 CPSpacer().heightSmall(),
                 CPInputTextField(
@@ -86,7 +86,7 @@ class SignupScreenPage extends StatelessWidget {
                 CPSpacer().heightMedium(),
                 Text(
                   'Last name',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 CPSpacer().heightSmall(),
                 CPInputTextField(
@@ -106,7 +106,7 @@ class SignupScreenPage extends StatelessWidget {
                 CPSpacer().heightMedium(),
                 Text(
                   'Email',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 CPSpacer().heightSmall(),
                 CPInputTextField(

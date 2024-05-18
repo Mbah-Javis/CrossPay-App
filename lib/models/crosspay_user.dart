@@ -1,61 +1,80 @@
 import 'package:hive/hive.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 part 'crosspay_user.g.dart';
 
 @HiveType(typeId: 1)
 class CrossPayUser extends HiveObject {
   @HiveField(0)
-  late int countryCode;
+  late int? countryCode;
 
   @HiveField(1)
-  late String uid;
+  late String? uid;
 
   @HiveField(2)
-  late String country;
+  late String? country;
 
   @HiveField(3)
   late String? profileImage;
 
   @HiveField(4)
-  late String dateCreated;
+  late String? dateCreated;
 
   @HiveField(5)
-  late NotificationSettings notificationSettings;
+  late NotificationSettings? notificationSettings;
 
   @HiveField(6)
-  late String lastName;
+  late String? lastName;
 
   @HiveField(7)
-  late int phoneNumber;
+  late int? phoneNumber;
 
   @HiveField(8)
-  late Transactions transactions;
+  late Transactions? transactions;
 
   @HiveField(9)
-  late String firstName;
+  late String? firstName;
 
   @HiveField(10)
-  late String email;
+  late String? email;
 
   @HiveField(11)
-  late SubAccount subAccount;
+  late SubAccount? subAccount;
 
   CrossPayUser({
-    required this.countryCode,
-    required this.uid,
-    required this.country,
+    this.countryCode,
+    this.uid,
+    this.country,
     this.profileImage,
-    required this.dateCreated,
-    required this.notificationSettings,
-    required this.lastName,
-    required this.phoneNumber,
-    required this.transactions,
-    required this.firstName,
-    required this.email,
-    required this.subAccount,
+    this.dateCreated,
+    this.notificationSettings,
+    this.lastName,
+    this.phoneNumber,
+    this.transactions,
+    this.firstName,
+    this.email,
+    this.subAccount,
   });
 
   factory CrossPayUser.fromJson(Map<String, dynamic> json) {
+    return CrossPayUser(
+      countryCode: json['contry_code'],
+      uid: json['uid'],
+      country: json['country'],
+      profileImage: json['profile_image'],
+      dateCreated: json['date_created'],
+      notificationSettings:
+          NotificationSettings.fromJson(json['notification_settings']),
+      lastName: json['last_name'],
+      phoneNumber: json['phone_number'],
+      transactions: Transactions.fromJson(json['transactions']),
+      firstName: json['first_name'],
+      email: json['email'],
+      subAccount: SubAccount.fromJson(json['sub_account']),
+    );
+  }
+
+  factory CrossPayUser.fromMap(DocumentSnapshot<Map<String, dynamic>> json) {
     return CrossPayUser(
       countryCode: json['contry_code'],
       uid: json['uid'],

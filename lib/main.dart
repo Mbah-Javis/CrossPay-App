@@ -36,18 +36,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Resolve GetMaterialApp theme issue in order to use one material app
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: CrossPayNavigator.navigatorKey,
-      home: MaterialApp(
-        title: 'CrossPay',
-        debugShowCheckedModeBanner: false,
-        theme: Themes.light,
-        darkTheme: Themes.dark,
-        themeMode: ThemeMode.light,
-        home: const MyHomePage(),
-      ),
+      theme: Themes.light,
+      darkTheme: Themes.dark,
+      themeMode: ThemeMode.light,
+      home: const MyHomePage(),
     );
   }
 }
