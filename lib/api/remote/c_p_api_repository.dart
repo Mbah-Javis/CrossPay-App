@@ -6,7 +6,7 @@ import 'package:crosspay/models/c_p_country_model.dart';
 import 'package:crosspay/models/c_p_transaction.dart';
 
 class CPApiRepository implements ApiRepository {
-  CPApiClient _apiClient = CPApiClient();
+  final CPApiClient _apiClient = CPApiClient();
 
   CPApiRepository();
 
