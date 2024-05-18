@@ -13,7 +13,7 @@ to any other mobile money account in Africa regardless of the mobile money opera
 
 ## Backend 
 CrossPay runs on a Node.js backend deployed to Google Cloud <br>
-The repository can be found [here](https://github.com/Mbah-Javis/CrossPay-Backend)
+The backend repository can be found [here](https://github.com/Mbah-Javis/CrossPay-Backend)
 
 ## Getting Started
 
