@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class CPSpacer {
   SizedBox heightSmall() {
-    return SizedBox(
+    return const SizedBox(
       height: 10.0,
     );
   }
 
   SizedBox heightMedium() {
-    return SizedBox(
+    return const SizedBox(
       height: 15.0,
     );
   }
@@ -22,6 +22,6 @@ class CPSpacer {
   }
 
   EdgeInsets screenPadding() {
-    return EdgeInsets.symmetric(horizontal: 15.0);
+    return const EdgeInsets.symmetric(horizontal: 15.0);
   }
 }
