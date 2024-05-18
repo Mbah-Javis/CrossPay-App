@@ -3,7 +3,7 @@ class ApiResponse {
   final int statusCode;
   final String message;
   final dynamic data;
-  final dynamic? error;
+  final dynamic error;
 
   ApiResponse({
     required this.successful,
