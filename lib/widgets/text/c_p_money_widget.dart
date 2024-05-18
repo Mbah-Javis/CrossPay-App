@@ -3,11 +3,10 @@ import 'package:crosspay/utils/text_formatter.dart';
 
 class CPMoneyWidget extends StatelessWidget {
   const CPMoneyWidget(
-      {Key? key,
+      {super.key,
       required this.amount,
       required this.currency,
-      required this.textStyle})
-      : super(key: key);
+      required this.textStyle});
 
   final double? amount;
   final String? currency;
