@@ -3,7 +3,7 @@ import 'package:crosspay/theme/annotated_system_ui.dart';
 import 'package:crosspay/theme/colors.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
