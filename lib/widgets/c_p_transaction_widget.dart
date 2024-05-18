@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:crosspay/theme/colors.dart';
-import 'package:crosspay/widgets/c_p_loading_widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:crosspay/utils/text_formatter.dart';
 import 'package:crosspay/widgets/c_p_image.dart';
 import 'package:crosspay/models/c_p_transaction.dart';
-import 'package:crosspay/utils/text_formatter.dart';
 import 'package:crosspay/controllers/mobile_money_controller.dart';
 import 'package:get/get.dart';
 
 class CPTransactionWidget extends StatelessWidget {
-  CPTransactionWidget({Key? key, required this.transaction}) : super(key: key);
+  CPTransactionWidget({super.key, required this.transaction});
 
   final CPTransaction transaction;
 
-  var momoController = Get.put(MobileMoneyController());
+  final momoController = Get.put(MobileMoneyController());
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.symmetric(vertical: 8),
-      padding: EdgeInsets.all(3),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.all(3),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -90,7 +87,7 @@ class CPTransactionWidget extends StatelessWidget {
                   Text(
                     TextFormatter().formatCurrency(
                         '${transaction.meta?.currency}',
-                        transaction!.amount!.toDouble()!),
+                        transaction.amount!.toDouble()),
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: kPrimaryColor, fontWeight: FontWeight.w500),
                   ),

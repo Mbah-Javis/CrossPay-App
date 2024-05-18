@@ -4,11 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:crosspay/theme/themes.dart';
-import 'package:crosspay/screens/authentication/welcome_screen/view.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:crosspay/utils/c_p_constants.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:crosspay/controllers/user_controller.dart';
@@ -66,6 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SplashScreen();
+    return const SplashScreen();
   }
 }
