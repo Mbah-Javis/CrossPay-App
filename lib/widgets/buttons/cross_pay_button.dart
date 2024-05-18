@@ -4,7 +4,7 @@ import 'package:crosspay/widgets/c_p_loading_widget.dart';
 
 class CrossPayButton extends StatelessWidget {
   const CrossPayButton(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.onClick,
       this.color,
@@ -12,8 +12,7 @@ class CrossPayButton extends StatelessWidget {
       this.width,
       this.height,
       this.titleColor,
-      required this.loading})
-      : super(key: key);
+      required this.loading});
 
   final String title;
   final VoidCallback onClick;
@@ -27,7 +26,7 @@ class CrossPayButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? CPLoadingWidget()
+        ? const CPLoadingWidget()
         : ElevatedButton(
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
