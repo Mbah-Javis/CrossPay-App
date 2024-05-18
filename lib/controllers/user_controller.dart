@@ -7,13 +7,16 @@ import 'package:crosspay/models/crosspay_user.dart';
 import 'package:crosspay/utils/cross_pay_navigator.dart';
 import 'package:crosspay/screens/home/home_screen/view.dart';
 import 'package:crosspay/screens/authentication/welcome_screen/view.dart';
-import 'package:crosspay/models/c_p_country_model.dart';
 
 class UserController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    var user = getLocalUser();
+    checkUser();
+  }
+
+  void checkUser() async {
+    CrossPayUser? user = await getLocalUser();
     if (user != null) {
       getUserLiveData();
     }
