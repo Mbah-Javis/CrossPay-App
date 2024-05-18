@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crosspay/theme/annotated_system_ui.dart';
-import 'package:crosspay/theme/colors.dart';
 import 'package:crosspay/widgets/buttons/cross_pay_button.dart';
 import 'package:crosspay/widgets/c_p_onboarding_heading.dart';
 import 'package:crosspay/widgets/c_p_rounded_container.dart';
@@ -14,11 +13,10 @@ import 'logic.dart';
 
 class SignupScreenPage extends StatelessWidget {
   SignupScreenPage(
-      {Key? key,
+      {super.key,
       required this.phoneNumber,
       required this.countryCode,
-      required this.country})
-      : super(key: key);
+      required this.country});
 
   final int phoneNumber;
   final int countryCode;
@@ -56,7 +54,7 @@ class SignupScreenPage extends StatelessWidget {
   }
 
   Widget _heading() {
-    return CPOnboardingHeading(title: 'Account Details');
+    return const CPOnboardingHeading(title: 'Account Details');
   }
 
   Widget _enterAccountDetails(BuildContext context) {
