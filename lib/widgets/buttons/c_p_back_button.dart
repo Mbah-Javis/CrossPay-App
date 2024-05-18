@@ -3,7 +3,7 @@ import 'package:crosspay/theme/colors.dart';
 import 'package:crosspay/utils/cross_pay_navigator.dart';
 
 class CPBackButton extends StatelessWidget {
-  const CPBackButton({Key? key}) : super(key: key);
+  const CPBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class CPBackButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             color: kWhiteColor, borderRadius: BorderRadius.circular(100)),
-        padding: EdgeInsets.all(8),
-        child: Icon(Icons.arrow_back_rounded, color: kBlackColor),
+        padding: const EdgeInsets.all(8),
+        child: const Icon(Icons.arrow_back_rounded, color: kBlackColor),
       ),
     );
   }
