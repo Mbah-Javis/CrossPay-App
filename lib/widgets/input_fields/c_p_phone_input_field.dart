@@ -7,12 +7,11 @@ import 'package:intl_phone_field/phone_number.dart';
 
 class CPPhoneInputField extends StatelessWidget {
   const CPPhoneInputField(
-      {Key? key,
+      {super.key,
       required this.countryList,
       required this.phoneController,
       required this.onChanged,
-      required this.onCountryChanged})
-      : super(key: key);
+      required this.onCountryChanged});
 
   final List<Country> countryList;
   final TextEditingController phoneController;
