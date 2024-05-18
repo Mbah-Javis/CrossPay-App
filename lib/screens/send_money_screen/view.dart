@@ -10,6 +10,7 @@ import 'package:crosspay/widgets/input_fields/c_p_input_text_field.dart';
 import 'package:crosspay/widgets/c_p_rounded_container.dart';
 import 'package:crosspay/widgets/c_p_image.dart';
 import 'package:crosspay/utils/utils.dart';
+import 'package:crosspay/controllers/user_controller.dart';
 
 import 'logic.dart';
 
@@ -22,6 +23,7 @@ class SendMoneyScreenPage extends StatelessWidget {
 
   final logic = Get.put(SendMoneyScreenLogic());
   final state = Get.find<SendMoneyScreenLogic>().state;
+  final userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,10 @@ class SendMoneyScreenPage extends StatelessWidget {
   }
 
   Widget _enterTransactionDetails(BuildContext context) {
+    String userCurrency =
+        '${userController.crossPayUser.value.subAccount?.defaultCurrency}';
+    String uCountry = userController.crossPayUser.value.country!;
+    String userCountry = getCountryFlag(uCountry);
     return CPRoundedContainer(
         child: Form(
             key: state.formKey,
@@ -56,13 +62,12 @@ class SendMoneyScreenPage extends StatelessWidget {
               children: [
                 Text(
                   'Amount',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: labelStyle(context),
                 ),
                 CPSpacer().heightSmall(),
                 CPInputTextField(
                   hint: '1000',
-                  suffixIcon: Text(
-                      '${country.currency} ${getCountryFlag(country.country!)}'),
+                  suffixIcon: Text('$userCurrency $userCountry'),
                   controller: state.amountController.value,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.next,
@@ -80,7 +85,7 @@ class SendMoneyScreenPage extends StatelessWidget {
                 CPSpacer().heightMedium(),
                 Text(
                   'Receiver gets',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: labelStyle(context),
                 ),
                 CPSpacer().heightSmall(),
                 Obx(() {
@@ -101,7 +106,7 @@ class SendMoneyScreenPage extends StatelessWidget {
                 CPSpacer().heightMedium(),
                 Text(
                   'Sender Number',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: labelStyle(context),
                 ),
                 CPSpacer().heightSmall(),
                 CPInputTextField(
@@ -135,7 +140,7 @@ class SendMoneyScreenPage extends StatelessWidget {
                 CPSpacer().heightMedium(),
                 Text(
                   'Receiver Number',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: labelStyle(context),
                 ),
                 CPSpacer().heightSmall(),
                 CPInputTextField(
@@ -169,7 +174,7 @@ class SendMoneyScreenPage extends StatelessWidget {
                 CPSpacer().heightMedium(),
                 Text(
                   'Receiver Name',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: labelStyle(context),
                 ),
                 CPSpacer().heightSmall(),
                 CPInputTextField(
@@ -189,6 +194,13 @@ class SendMoneyScreenPage extends StatelessWidget {
                 ),
               ],
             )));
+  }
+
+  TextStyle labelStyle(BuildContext context) {
+    return Theme.of(context)
+        .textTheme
+        .bodyLarge!
+        .copyWith(fontWeight: FontWeight.w600);
   }
 
   Widget _sendMoneyButton() {
