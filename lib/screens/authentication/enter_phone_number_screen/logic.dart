@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:crosspay/screens/authentication/verify_o_t_p_screen/view.dart';
 import 'package:crosspay/utils/cross_pay_navigator.dart';
-import 'package:crosspay/api/remote/c_p_api_repository.dart';
 import 'package:crosspay/api/remote/firebase_auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:crosspay/utils/c_p_alerts.dart';
@@ -62,7 +60,6 @@ class EnterPhoneNumberScreenLogic extends GetxController {
   void gotoVerifyOTP(String verificationId, int? forceResendingToken) {
     String phoneNumber = '${state.phoneNumberController.value.text.trim()}';
     String countryCode = '${state.countryCode.value.trim()}';
-    print(phoneNumber);
     CrossPayNavigator().goTo(
         VerifyOTPScreenPage(
           phoneNumber: phoneNumber,
