@@ -6,32 +6,31 @@ import 'package:crosspay/controllers/mobile_money_controller.dart';
 import 'package:crosspay/widgets/c_p_loading_widget.dart';
 
 class CPAvailableCountries extends StatefulWidget {
-  const CPAvailableCountries({Key? key, required this.isSendingMoney})
-      : super(key: key);
+  const CPAvailableCountries({super.key, required this.isSendingMoney});
 
   final bool isSendingMoney;
 
   @override
-  _CPAvailableCountriesState createState() => _CPAvailableCountriesState();
+  CPAvailableCountriesState createState() => CPAvailableCountriesState();
 }
 
-class _CPAvailableCountriesState extends State<CPAvailableCountries> {
+class CPAvailableCountriesState extends State<CPAvailableCountries> {
   var mobileMoneyController = Get.put(MobileMoneyController());
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30))),
       child: FutureBuilder(
           future: mobileMoneyController.getAvailableCountries(),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return Center(child: CPLoadingWidget());
+              return const Center(child: CPLoadingWidget());
             }
-            List<CPCountryModel> countries = snapshot.data!;
+            List<CPCountryModel>? countries = snapshot.data;
             return countries != null
                 ? ListView.builder(
                     itemCount: countries.length,
@@ -54,8 +53,6 @@ class _CPAvailableCountriesState extends State<CPAvailableCountries> {
   }
 
   Widget _noCountriesFound() {
-    return Container(
-      child: Center(child: Text('No available countries found')),
-    );
+    return const Center(child: Text('No available countries found'));
   }
 }
