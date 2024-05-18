@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:crosspay/theme/colors.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:crosspay/widgets/c_p_loading_widget.dart';
 import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:crosspay/models/c_p_country_model.dart';
 import 'package:crosspay/utils/utils.dart';
@@ -10,20 +8,19 @@ import 'c_p_image.dart';
 
 class CPAvailableCountry extends StatefulWidget {
   const CPAvailableCountry(
-      {Key? key,
+      {super.key,
       required this.country,
       required this.isSendingMoney,
-      required this.onOptionSelected})
-      : super(key: key);
+      required this.onOptionSelected});
 
   final CPCountryModel country;
   final bool isSendingMoney;
   final Function(PaymentOption) onOptionSelected;
   @override
-  _CPAvailableCountryState createState() => _CPAvailableCountryState();
+  CPAvailableCountryState createState() => CPAvailableCountryState();
 }
 
-class _CPAvailableCountryState extends State<CPAvailableCountry> {
+class CPAvailableCountryState extends State<CPAvailableCountry> {
   bool showOptions = false;
 
   void updateShowOptions() {
@@ -35,8 +32,8 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
       decoration: BoxDecoration(
           color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
       child: Column(
@@ -87,7 +84,7 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
 
   Widget _buildOptions() {
     return Container(
-      margin: EdgeInsets.only(left: 15),
+      margin: const EdgeInsets.only(left: 15),
       child: Column(
         children: List.generate(
             widget.country!.paymentOptions!.length!,
@@ -103,8 +100,8 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
         widget.onOptionSelected(paymentOption);
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 8),
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
         decoration: BoxDecoration(
             color: kInputBgColor, borderRadius: BorderRadius.circular(15)),
         child: Row(
@@ -114,14 +111,14 @@ class _CPAvailableCountryState extends State<CPAvailableCountry> {
                   color: kWhiteColor,
                   border: Border.all(color: kWhiteColor, width: 2),
                   borderRadius: BorderRadius.circular(100)),
-              child: CPImage(
-                  imageUrl: '${paymentOption.logo}', height: 30, width: 30),
+              child:
+                  CPImage(imageUrl: paymentOption.logo, height: 30, width: 30),
             ),
             CPSpacer().width(15),
             Text(
               widget.isSendingMoney
-                  ? '${paymentOption.name}'
-                  : '${paymentOption.network}',
+                  ? paymentOption.name
+                  : paymentOption.network,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
