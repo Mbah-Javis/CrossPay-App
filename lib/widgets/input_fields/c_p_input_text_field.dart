@@ -3,7 +3,7 @@ import 'package:crosspay/theme/colors.dart';
 
 class CPInputTextField extends StatelessWidget {
   const CPInputTextField(
-      {Key? key,
+      {super.key,
       required this.hint,
       required this.controller,
       this.autoFocus,
@@ -22,8 +22,7 @@ class CPInputTextField extends StatelessWidget {
       this.suffixIcon,
       this.onChanged,
       required this.onFieldSubmitted,
-      this.expands})
-      : super(key: key);
+      this.expands});
 
   final TextEditingController controller;
   final String hint;
