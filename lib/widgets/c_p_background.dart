@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class CPBackground extends StatelessWidget {
   const CPBackground(
-      {Key? key, required this.assetName, required this.child, this.fit})
-      : super(key: key);
+      {super.key, required this.assetName, required this.child, this.fit});
 
   final String assetName;
   final Widget child;
