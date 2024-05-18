@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:crosspay/theme/colors.dart';
 
 class CPLoadingWidget extends StatelessWidget {
-  const CPLoadingWidget({Key? key}) : super(key: key);
+  const CPLoadingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 40,
       width: 40,
       child: CircularProgressIndicator(
