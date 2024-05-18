@@ -15,8 +15,7 @@ import 'package:crosspay/controllers/user_controller.dart';
 import 'logic.dart';
 
 class SendMoneyScreenPage extends StatelessWidget {
-  SendMoneyScreenPage({Key? key, required this.country, required this.option})
-      : super(key: key);
+  SendMoneyScreenPage({super.key, required this.country, required this.option});
 
   final CPCountryModel country;
   final PaymentOption option;
@@ -37,7 +36,7 @@ class SendMoneyScreenPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CPSpacer().height(40),
-            CPOnboardingHeading(title: 'Send Money'),
+            const CPOnboardingHeading(title: 'Send Money'),
             CPSpacer().height(20),
             _enterTransactionDetails(context),
             CPSpacer().height(100),
@@ -128,9 +127,8 @@ class SendMoneyScreenPage extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.next,
                   validator: (value) {
-                    int maxLength =
-                        getCountryPhoneLength('${country.country!}');
-                    if (value != null && value!.length != maxLength) {
+                    int maxLength = getCountryPhoneLength(country.country!);
+                    if (value != null && value.length != maxLength) {
                       return 'Invalid phone number';
                     }
                     return null;
@@ -145,7 +143,7 @@ class SendMoneyScreenPage extends StatelessWidget {
                 CPSpacer().heightSmall(),
                 CPInputTextField(
                   hint: '677700000',
-                  maxLength: getCountryPhoneLength('${country.country!}'),
+                  maxLength: getCountryPhoneLength(country.country!),
                   icon: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -162,9 +160,8 @@ class SendMoneyScreenPage extends StatelessWidget {
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.number,
                   validator: (value) {
-                    int maxLength =
-                        getCountryPhoneLength('${country.country!}');
-                    if (value != null && value!.length != maxLength) {
+                    int maxLength = getCountryPhoneLength(country.country!);
+                    if (value != null && value.length != maxLength) {
                       return 'Invalid phone number';
                     }
                     return null;
