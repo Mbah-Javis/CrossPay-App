@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 class CPPinInputField extends StatelessWidget {
-  CPPinInputField(
-      {Key? key,
+  const CPPinInputField(
+      {super.key,
       required this.controller,
       required this.focusNode,
       required this.showError,
-      required this.onComplete})
-      : super(key: key);
+      required this.onComplete});
   final TextEditingController controller;
   final FocusNode focusNode;
   final bool showError;
