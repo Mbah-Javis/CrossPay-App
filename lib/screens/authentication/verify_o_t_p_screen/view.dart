@@ -4,8 +4,6 @@ import 'package:crosspay/widgets/c_p_background.dart';
 import 'package:crosspay/theme/annotated_system_ui.dart';
 import 'package:crosspay/widgets/c_p_rounded_container.dart';
 import 'package:crosspay/widgets/buttons/cross_pay_button.dart';
-import 'package:crosspay/widgets/buttons/c_p_back_button.dart';
-import 'package:crosspay/widgets/c_p_loading_widget.dart';
 import 'package:crosspay/theme/colors.dart';
 import 'package:crosspay/widgets/input_fields/c_pin_input_field.dart';
 import 'package:crosspay/widgets/c_p_onboarding_heading.dart';
@@ -16,13 +14,12 @@ import 'logic.dart';
 
 class VerifyOTPScreenPage extends StatelessWidget {
   VerifyOTPScreenPage(
-      {Key? key,
+      {super.key,
       required this.phoneNumber,
       required this.countryCode,
       required this.country,
       required this.verificationId,
-      required this.resendOtpToken})
-      : super(key: key);
+      required this.resendOtpToken});
 
   final String phoneNumber;
   final String countryCode;
@@ -51,7 +48,7 @@ class VerifyOTPScreenPage extends StatelessWidget {
             children: [
               _heading(context),
               Container(
-                margin: EdgeInsets.only(top: 40),
+                margin: const EdgeInsets.only(top: 40),
                 child: CPRoundedContainer(
                   child: Column(
                     children: [_enterOTPWidget(context)],
@@ -68,7 +65,7 @@ class VerifyOTPScreenPage extends StatelessWidget {
   }
 
   Widget _heading(BuildContext context) {
-    return CPOnboardingHeading(title: 'Verify OTP Code');
+    return const CPOnboardingHeading(title: 'Verify OTP Code');
   }
 
   Widget _enterOTPWidget(BuildContext context) {
@@ -96,7 +93,7 @@ class VerifyOTPScreenPage extends StatelessWidget {
   Widget _didNotReceiveCode(BuildContext context) {
     return Row(
       children: [
-        Text('Did not receive code?'),
+        const Text('Did not receive code?'),
         CPSpacer().width(10),
         Obx(() {
           return state.continueLoading.value
@@ -104,7 +101,7 @@ class VerifyOTPScreenPage extends StatelessWidget {
               : InkWell(
                   onTap: () {
                     String phoneCode = countryCode.replaceAll('+', '');
-                    logic.resendOTP('$countryCode$phoneNumber');
+                    logic.resendOTP('$phoneCode$phoneNumber');
                   },
                   child: Text('Resend',
                       style: Theme.of(context)
