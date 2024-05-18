@@ -44,7 +44,7 @@ class CPAlerts {
         builder: (ctx) {
           return Container(
             width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(bottom: 20, left: 15, right: 15),
+            margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
