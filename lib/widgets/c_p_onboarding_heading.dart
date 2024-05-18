@@ -3,7 +3,7 @@ import 'package:crosspay/theme/colors.dart';
 import 'package:crosspay/widgets/buttons/c_p_back_button.dart';
 
 class CPOnboardingHeading extends StatelessWidget {
-  const CPOnboardingHeading({Key? key, required this.title}) : super(key: key);
+  const CPOnboardingHeading({super.key, required this.title});
 
   final String title;
 
@@ -13,12 +13,12 @@ class CPOnboardingHeading extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CPBackButton(),
-        SizedBox(
+        const CPBackButton(),
+        const SizedBox(
           height: 30,
         ),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15), color: kWhiteColor),
           child: Text(
