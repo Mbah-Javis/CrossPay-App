@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crosspay/theme/annotated_system_ui.dart';
-import 'package:crosspay/widgets/buttons/c_p_back_button.dart';
-import 'package:crosspay/theme/colors.dart';
 import 'package:crosspay/widgets/c_p_rounded_container.dart';
 import 'package:crosspay/widgets/buttons/cross_pay_button.dart';
 import 'package:crosspay/widgets/c_p_onboarding_heading.dart';
@@ -11,10 +9,9 @@ import 'package:crosspay/utils/c_p_spacer.dart';
 import 'package:crosspay/generated/assets.dart';
 
 import 'logic.dart';
-import 'state.dart';
 
 class EnterPhoneNumberScreenPage extends StatelessWidget {
-  EnterPhoneNumberScreenPage({Key? key}) : super(key: key);
+  EnterPhoneNumberScreenPage({super.key});
 
   final logic = Get.put(EnterPhoneNumberScreenLogic());
   final state = Get.find<EnterPhoneNumberScreenLogic>().state;
@@ -26,7 +23,7 @@ class EnterPhoneNumberScreenPage extends StatelessWidget {
       body: Container(
         padding: CPSpacer().screenPadding().copyWith(top: 50, bottom: 20),
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.cover, image: AssetImage(Assets.imagesAfricanBg2))),
         child: Column(
@@ -35,7 +32,7 @@ class EnterPhoneNumberScreenPage extends StatelessWidget {
           children: [
             _heading(context),
             Container(
-              margin: EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 40),
               child: CPRoundedContainer(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +53,7 @@ class EnterPhoneNumberScreenPage extends StatelessWidget {
   }
 
   Widget _heading(BuildContext context) {
-    return CPOnboardingHeading(title: 'Phone Number');
+    return const CPOnboardingHeading(title: 'Phone Number');
   }
 
   Widget _enterPhoneNumber(BuildContext context) {
