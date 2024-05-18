@@ -4,7 +4,7 @@ import 'package:crosspay/screens/authentication/verify_o_t_p_screen/logic.dart';
 import 'package:get/get.dart';
 
 class FirebaseAuthService {
-  FirebaseAuthService() {}
+  FirebaseAuthService();
 
   FirebaseAuth auth = FirebaseAuth.instance;
   var enterNumberController = Get.put(EnterPhoneNumberScreenLogic());
@@ -15,7 +15,7 @@ class FirebaseAuthService {
     try {
       await auth.verifyPhoneNumber(
           phoneNumber: phoneNumber,
-          timeout: Duration(seconds: 60),
+          timeout: const Duration(seconds: 60),
           verificationCompleted: (PhoneAuthCredential credential) {
             enterNumberController.verificationCompleted(credential);
           },
@@ -27,7 +27,7 @@ class FirebaseAuthService {
             if (resending) {
               verifyOTPController.showSuccessMessage('Verification code sent');
               verifyOTPController.setResendOtpToken(
-                  verificationId!, forceResendingToken);
+                  verificationId, forceResendingToken);
             } else {
               enterNumberController.verificationCodeSent(
                   verificationId, forceResendingToken);
