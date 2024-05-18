@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
 class TextFormatter {
-  TextFormatter() {}
+  TextFormatter();
   String formatPhoneNumber(String phoneNumber) {
     String cleanedPhoneNumber = phoneNumber.replaceAll(RegExp(r'[^\d]'), '');
 
