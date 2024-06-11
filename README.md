@@ -15,6 +15,29 @@ to any other mobile money account in Africa regardless of the mobile money opera
 CrossPay runs on a Node.js backend deployed to Google Cloud <br>
 The backend repository can be found [here](https://github.com/Mbah-Javis/CrossPay-Backend)
 
+## Screenshots
+<a href="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240516-020234.png">
+  <img src="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240516-020234.png" alt="Image 1" width="350" height="750">
+</a>
+<a href="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240511-190800.png">
+  <img src="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240511-190800.png" alt="Alt Text" width="350" height="750">
+</a>
+<a href="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240516-013102.png">
+  <img src="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240516-013102.png" alt="Alt Text" width="350" height="750">
+</a>
+<a href="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240516-010635.png">
+  <img src="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240516-010635.png" alt="Alt Text" width="350" height="750">
+</a>
+<a href="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240517-174857.png">
+  <img src="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240517-174857.png" alt="Alt Text" width="350" height="750">
+</a>
+<a href="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240517-175121.png">
+  <img src="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240517-175121.png" alt="Alt Text" width="350" height="750">
+</a>
+<a href="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240517-141649.png">
+  <img src="https://github.com/Mbah-Javis/CrossPay-App/blob/main/assets/images/Screenshot_20240517-141649.png" alt="Alt Text" width="350" height="750">
+</a>
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
